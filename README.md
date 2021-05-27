@@ -10,8 +10,6 @@ TODO:
 FINISHED:
 - move the pieces around
 
-
-
 LOGIC:
 - User input about where the piece is located and where it is heading
 - Check if the destination is valid (pins included)

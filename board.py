@@ -2,6 +2,7 @@ import colorama
 from colorama import Fore
 from colorama import Style
 colorama.init()
+
 def replacer(s, newstring, index, nofail=False):
     if not nofail and index not in range(len(s)):
         raise ValueError("index outside given string")
@@ -22,10 +23,11 @@ class Board(object):
             '********',
             '********',
             '********',
-            'pppppppp',
+            'PPPPPPPP',
             'RNBQKBNR'] 
         self.lexographic = {'a': 0, 'b': 1, 'c':2, 'd':3, 'e':4, 'f':5, 'g':6, 'h':7}
-        
+        self.moves = 0 # keeps track of the moves
+
     def printBoard(self, board):
         print(Fore.GREEN + Style.BRIGHT + "\n\t    A B C D E F G H\n" + Style.RESET_ALL)
         for i in range(len(board)):
@@ -36,6 +38,7 @@ class Board(object):
             print(f'  {8-i}', end='   ')
             print()
         print(Fore.GREEN + Style.BRIGHT + "\n\t    A B C D E F G H\n" + Style.RESET_ALL)
+        print(f"\n {self.moves}")
 
     def getCoordinate(self, piecePos):
         x = piecePos[1]
@@ -72,7 +75,17 @@ class Board(object):
         dest = replacer(board[destColumn], piece, destRow) 
         board[destColumn] = dest
 
+        self.moves += 1 # add everytime a player moves
         return board
-    
-    def checkPiece(self, board, move):
-        pass
+
+    def turn(self, move):
+        if self.moves % 2 == 0:
+            if move[0].islower()
+        else:
+
+
+
+
+
+
+
