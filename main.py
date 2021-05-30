@@ -44,5 +44,8 @@ if __name__ == "__main__":
         print(coordinates)
         if main.board.validateTurn(coordinates):
             main.board.move(main.board.theBoard, coordinates)
+        else:
+            print("That's not valid, try again!")
+            continue
 
 

@@ -87,12 +87,6 @@ class Board(object):
             if self.theBoard[move[0]][move[1]].islower():
                 print("Black")
                 return True
-
         else:
             return False
-
-
-
-
-
 
