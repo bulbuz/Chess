@@ -41,7 +41,6 @@ if __name__ == "__main__":
         main.board.printBoard(main.board.theBoard)
         x = main.takeInp()
         coordinates = main.board.convertCoordinate(x)
-        print(coordinates)
         if main.board.validateTurn(coordinates):
             main.board.move(main.board.theBoard, coordinates)
         else:

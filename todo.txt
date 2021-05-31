@@ -1,0 +1,21 @@
+MAIN STRUCTURE OF CHESS PROGRAM
+===============================
+
+main loop {
+1. print board
+
+2. take input
+
+3. convert input
+
+4. validate user input
+    sub steps:
+- white or black turn
+- validate piece movement
+
+5. move piece
+
+6. check if won 
+
+
+

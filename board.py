@@ -27,7 +27,7 @@ class Board(object):
             'RNBQKBNR'] 
         self.lexographic = {'a': 0, 'b': 1, 'c':2, 'd':3, 'e':4, 'f':5, 'g':6, 'h':7}
         self.moves = 0 # keeps track of the moves
-        self.state= 0 # 0 is white
+        self.player = 0 # 0 is white
 
     def printBoard(self, board):
         print(Fore.GREEN + Style.BRIGHT + "\n\t    A B C D E F G H\n" + Style.RESET_ALL)
@@ -79,13 +79,17 @@ class Board(object):
         return board
 
     def validateTurn(self, move): # takes in the coordinates of the piece
-        if self.moves % 2 == 0 and self.state == 0:
+        if self.moves % 2 == 0:
+            self.player = 0
+        
+        elif self.moves % 2 == 1:
+            self.player = 1
+
+        if self.moves % 2 == 0 and self.player == 0:
             if self.theBoard[move[0]][move[1]].isupper():
-                print("White")
                 return True
-        elif self.moves % 2 == 1 and self.state == 1:
+        elif self.moves % 2 == 1 and self.player == 1:
             if self.theBoard[move[0]][move[1]].islower():
-                print("Black")
                 return True
         else:
             return False
