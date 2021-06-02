@@ -44,6 +44,11 @@ class Board(object):
         x = piecePos[1]
         y = piecePos[0]
 
+    def pieceType(self, location):
+        piece = self.theBoard[location[0]][location[1]]
+
+        return piece
+
     def convertCoordinate(self, position): # inputs a list [d2, d4]
         row = position[0][0]
         column = position[0][1]
@@ -60,10 +65,10 @@ class Board(object):
         return newColumn, newRow, destColumn, destRow 
 
     def move(self, board, position): 
-        row = position[1]
         column = position[0]
-        destRow = position[3]
+        row = position[1]
         destColumn = position[2]
+        destRow = position[3]
         piece = board[column][row]
         
         # remove the piece and replace it with an empty slot

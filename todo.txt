@@ -11,6 +11,7 @@ main loop {
 4. validate user input
     sub steps:
 - white or black turn
+- get piece type
 - validate piece movement
 
 5. move piece
