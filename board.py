@@ -17,14 +17,15 @@ def replacer(s, newstring, index, nofail=False):
 class Board(object):
     def __init__(self):
         self.theBoard = [
-            'rnbqkbnr',
-            'pppppppp',
-            '********',
-            '********',
-            '********',
-            '********',
-            'PPPPPPPP',
-            'RNBQKBNR'] 
+            #01234567
+            'rnbqkbnr',#0
+            'pppppppp',#1
+            '********',#2
+            '********',#3
+            '********',#4
+            '********',#5
+            'PPPPPPPP',#6
+            'RNBQKBNR']#7 
         self.lexographic = {'a': 0, 'b': 1, 'c':2, 'd':3, 'e':4, 'f':5, 'g':6, 'h':7}
         self.moves = 0 # keeps track of the moves
         self.player = 0 # 0 is white
@@ -40,14 +41,9 @@ class Board(object):
             print()
         print(Fore.GREEN + Style.BRIGHT + "\n\t    A B C D E F G H\n" + Style.RESET_ALL)
 
-    def getCoordinate(self, piecePos):
-        x = piecePos[1]
-        y = piecePos[0]
-
     def pieceType(self, location):
         piece = self.theBoard[location[0]][location[1]]
-
-        return piece
+        return piece.lower()
 
     def convertCoordinate(self, position): # inputs a list [d2, d4]
         row = position[0][0]
@@ -99,3 +95,8 @@ class Board(object):
         else:
             return False
 
+    def validPiece(self, location, board):
+        if not board[location[0]][location[1]].isalpha():
+            return False
+        else:
+            return True

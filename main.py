@@ -41,10 +41,13 @@ if __name__ == "__main__":
         main.board.printBoard(main.board.theBoard)
         x = main.takeInp()
         coordinates = main.board.convertCoordinate(x)
-        if main.board.validateTurn(coordinates):
-            main.board.move(main.board.theBoard, coordinates)
+        if main.board.validPiece(coordinates, main.board.theBoard):
+            if main.board.validateTurn(coordinates):
+                #if (coordinates[0], coordinates[1]) in main.pawn.validMoves(coordinates, main.board.theBoard):
+                main.board.move(main.board.theBoard, coordinates)
+            else:
+                print("That's not valid, try again!")
+                continue
         else:
-            print("That's not valid, try again!")
+            print("The selected piece is not valid")
             continue
-
-
