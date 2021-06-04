@@ -38,16 +38,40 @@ print("""
 if __name__ == "__main__":
     main = Main()
     while True:
+        player = main.board.currentPlayer()
         main.board.printBoard(main.board.theBoard)
         x = main.takeInp()
         coordinates = main.board.convertCoordinate(x)
         if main.board.validPiece(coordinates, main.board.theBoard):
             if main.board.validateTurn(coordinates):
-                #if (coordinates[0], coordinates[1]) in main.pawn.validMoves(coordinates, main.board.theBoard):
-                main.board.move(main.board.theBoard, coordinates)
+
+                if main.board.pieceType(coordinates) == 'p':
+                    print(coordinates[2],coordinates[3])
+                    print(main.pawn.validMoves(coordinates, main.board.theBoard))
+                    if (coordinates[2], coordinates[3]) in main.pawn.validMoves(coordinates, main.board.theBoard):
+                        main.board.move(main.board.theBoard, coordinates)
+                    else:
+                        print("That's not a valid move!")
+
+                elif main.board.pieceType(coordinates) == 'b':
+                    pass
+                
+                elif main.board.pieceType(coordinates) == 'k':
+                    pass
+                
+                elif main.board.pieceType(coordinates) == 'n':
+                    pass
+
+                elif main.board.pieceType(coordinates) == 'q':
+                    pass
+
+                elif main.board.pieceType(coordinates) == 'r':
+                    pass
+
             else:
                 print("That's not valid, try again!")
                 continue
         else:
             print("The selected piece is not valid")
             continue
+

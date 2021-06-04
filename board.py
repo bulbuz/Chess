@@ -88,15 +88,25 @@ class Board(object):
 
         if self.moves % 2 == 0 and self.player == 0:
             if self.theBoard[move[0]][move[1]].isupper():
+                print("Black's turn")
                 return True
         elif self.moves % 2 == 1 and self.player == 1:
             if self.theBoard[move[0]][move[1]].islower():
+                print("White's turn") 
                 return True
         else:
             return False
+    
 
     def validPiece(self, location, board):
         if not board[location[0]][location[1]].isalpha():
             return False
         else:
             return True
+
+    def currentPlayer(self):
+        if self.player: # return white w=0 b=1
+            return False
+        else:
+            return True 
+
