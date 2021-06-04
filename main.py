@@ -50,6 +50,7 @@ if __name__ == "__main__":
                     #print(main.pawn.validMoves(coordinates, main.board.theBoard))
                     if (coordinates[2], coordinates[3]) in main.pawn.validMoves(coordinates, main.board.theBoard):
                         main.board.move(main.board.theBoard, coordinates)
+                        main.pawn.isMoved = True
                     else:
                         print("That's not a valid move!")
 
