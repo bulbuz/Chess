@@ -46,27 +46,27 @@ if __name__ == "__main__":
             if main.board.validateTurn(coordinates):
 
                 if main.board.pieceType(coordinates) == 'p':
-                    print(coordinates[2],coordinates[3])
-                    print(main.pawn.validMoves(coordinates, main.board.theBoard))
+                    #print(coordinates[2],coordinates[3])
+                    #print(main.pawn.validMoves(coordinates, main.board.theBoard))
                     if (coordinates[2], coordinates[3]) in main.pawn.validMoves(coordinates, main.board.theBoard):
                         main.board.move(main.board.theBoard, coordinates)
                     else:
                         print("That's not a valid move!")
 
                 elif main.board.pieceType(coordinates) == 'b':
-                    pass
-                
+                    main.board.move(main.board.theBoard, coordinates)
+
                 elif main.board.pieceType(coordinates) == 'k':
-                    pass
+                    main.board.move(main.board.theBoard, coordinates)
                 
                 elif main.board.pieceType(coordinates) == 'n':
-                    pass
+                    main.board.move(main.board.theBoard, coordinates)
 
                 elif main.board.pieceType(coordinates) == 'q':
-                    pass
+                    main.board.move(main.board.theBoard, coordinates)
 
                 elif main.board.pieceType(coordinates) == 'r':
-                    pass
+                    main.board.move(main.board.theBoard, coordinates)
 
             else:
                 print("That's not valid, try again!")

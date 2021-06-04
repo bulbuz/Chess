@@ -10,12 +10,12 @@ class Pawn(object):
        
         # valid moves
         if board[location[0]][location[1]].isupper(): # white
-            if board[location[0] - 1][location[1]] == "*" and board[location[0] - 2][location[1]] == "*":
+            if board[location[0] - 1][location[1]] == "*" and board[location[0] - 1][location[1]] == "*":
                 validMoves.append((location[0]-1, location[1]))
                 if not self.isMoved:
                     validMoves.append((location[0] - 2, location[1]))
         else: # black
-            if board[location[0] + 1][location[1]] == "*" and board[location[0] + 2][location[1]] == "*":
+            if board[location[0] + 1][location[1]] == "*" and board[location[0] + 1][location[1]] == "*":
                 validMoves.append((location[0]+1, location[1]))
                 if not self.isMoved:
                     validMoves.append((location[0] + 2, location[1]))
@@ -26,9 +26,9 @@ class Pawn(object):
                 validMoves.append((location[0]+1,location[1]+1))
             if piece.islower() != board[location[0]+1][location[1]-1].islower() and board[location[0]+1][location[1]-1].isalpha():
                 validMoves.append((location[0]+1,location[1]-1))
-        else:
+        else: #white
             if piece.isupper() != board[location[0]-1][location[1]-1].isupper() and board[location[0]-1][location[1]-1].isalpha(): # checks for different colors
-                validMoves.append((location[0]+1,location[1]+1))
+                validMoves.append((location[0]-1,location[1]-1))
             if piece.isupper() != board[location[0]-1][location[1]+1].isupper() and board[location[0]-1][location[1]+1].isalpha():
                 validMoves.append((location[0]-1,location[1]+1))
 
