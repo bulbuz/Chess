@@ -2,7 +2,7 @@ from board import Board
 
 class Pawn(object):
     def __init__(self):
-        self.isMoved = False 
+        pass    
 
     def validMoves(self, location, board): # the location of the piece (tuple d2,d4)
         validMoves = []
@@ -12,12 +12,12 @@ class Pawn(object):
         if board[location[0]][location[1]].isupper(): # white
             if board[location[0] - 1][location[1]] == "*" and board[location[0] - 1][location[1]] == "*":
                 validMoves.append((location[0]-1, location[1]))
-                if not self.isMoved:
+                if location[0] == 6:
                     validMoves.append((location[0] - 2, location[1]))
         else: # black
             if board[location[0] + 1][location[1]] == "*" and board[location[0] + 1][location[1]] == "*":
                 validMoves.append((location[0]+1, location[1]))
-                if not self.isMoved:
+                if location[0] == 1:
                     validMoves.append((location[0] + 2, location[1]))
         
         # available captures depending on the piece color
@@ -34,10 +34,3 @@ class Pawn(object):
 
         return validMoves
 
-# development purposes
-"""
-board = Board()
-p = Pawn()
-loc = (1,4)
-print(p.validMoves(loc, board.theBoard))
-"""
