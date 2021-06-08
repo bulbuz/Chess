@@ -34,3 +34,6 @@ class Pawn(object):
 
         return validMoves
 
+    def promotion(self, location, board):
+        pass
+

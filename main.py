@@ -54,7 +54,8 @@ if __name__ == "__main__":
                         print("That's not a valid move!")
 
                 elif main.board.pieceType(coordinates) == 'b':
-                    main.board.move(main.board.theBoard, coordinates)
+                    if (coordinates[2], coordinates[3]) in main.bishop.validMoves(coordinates, main.board.theBoard):
+                        main.board.move(main.board.theBoard, coordinates)
 
                 elif main.board.pieceType(coordinates) == 'k':
                     main.board.move(main.board.theBoard, coordinates)
