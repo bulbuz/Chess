@@ -46,8 +46,6 @@ if __name__ == "__main__":
             if main.board.validateTurn(coordinates):
 
                 if main.board.pieceType(coordinates) == 'p':
-                    #print(coordinates[2],coordinates[3])
-                    #print(main.pawn.validMoves(coordinates, main.board.theBoard))
                     if (coordinates[2], coordinates[3]) in main.pawn.validMoves(coordinates, main.board.theBoard):
                         main.board.move(main.board.theBoard, coordinates)
                     else:
