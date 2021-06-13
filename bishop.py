@@ -1,17 +1,7 @@
 
 class Bishop(object):
     def __init__(self):
-        self.theBoard = [
-            #01234567
-            '********',#0 
-            '********',#1
-            '***i*i**',#2
-            '****B***',#3
-            '***i****',#4
-            '********',#5
-            '*******i',#6
-            '********',#7
-        ]
+        pass
 
     def validMoves(self, location, board):
         validMoves = []
@@ -26,6 +16,10 @@ class Bishop(object):
                 if board[location[0]-i][location[1]+i].isalpha() and board[location[0]][location[1]].islower() != board[location[0]-i][location[1]+i].islower():
                     validMoves.append((location[0]-i, location[1]+i))
                     blockedPathx = True
+
+                elif board[location[0]-i][location[1]+i].isalpha() and board[location[0]][location[1]].islower() == board[location[0]-i][location[1]+i].islower():
+                    blockedPathx = True
+
                 elif not board[location[0]-i][location[1]+i].isalpha():
                     validMoves.append((location[0]-i, location[1]+i))
 
@@ -33,6 +27,10 @@ class Bishop(object):
                 if board[location[0]+i][location[1]-i].isalpha() and board[location[0]][location[1]].islower() != board[location[0]+i][location[1]-i].islower():
                     validMoves.append((location[0]+i, location[1]-i))
                     blockedPathy = True
+
+                elif board[location[0]+i][location[1]-i].isalpha() and board[location[0]][location[1]].islower() == board[location[0]+i][location[1]-i].islower():
+                    blockedPathy = True
+
                 elif not board[location[0]+i][location[1]-i].isalpha():
                     validMoves.append((location[0]+i, location[1]-i))
 
@@ -47,6 +45,9 @@ class Bishop(object):
                     validMoves.append((location[0]+j, location[1]+j))
                     blockedx = True
 
+                elif board[location[0]+j][location[1]+j].isalpha() and board[location[0]][location[1]].islower() == board[location[0]+j][location[1]+j].islower():
+                    blockedx = True
+
                 elif not board[location[0]+j][location[1]+j].isalpha():
                     validMoves.append((location[0]+j, location[1]+j))
 
@@ -54,12 +55,11 @@ class Bishop(object):
                 if board[location[0]-j][location[1]-j].isalpha() and board[location[0]][location[1]].islower() != board[location[0]-j][location[1]-j].islower():
                     validMoves.append((location[0]-j, location[1]-j))
                     blockedy = True
+                
+                elif board[location[0]-j][location[1]-j].isalpha() and board[location[0]][location[1]].islower() == board[location[0]-j][location[1]-j].islower():
+                    blockedy = True
+
                 elif not board[location[0]-j][location[1]-j].isalpha():
                     validMoves.append((location[0]-j, location[1]-j))
 
         return validMoves
-
-#b = Bishop()
-#loc = [3,4]
-#print(b.validMoves(loc, b.theBoard))
-
