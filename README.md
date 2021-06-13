@@ -1,19 +1,9 @@
 Chess
 
-- Set up board and movement
-- Genereate the valid moves for each selected piece
-- Move piece
+HOW TO PLAY
+===========
 
-TODO:
-- Valid piece moves
+- Enter location of piece
+- Enter destination of piece
 
-FINISHED:
-- move the pieces around
-
-LOGIC:
-- User input about where the piece is located and where it is heading
-- Check if the destination is valid (pins included)
-- Move piece
-- Check if won
-
-
+If you are going to promote a pawn, a prompt will appear and you can choose your piece
