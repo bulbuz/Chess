@@ -24,13 +24,15 @@ class Main(object):
         self.pawn = Pawn()
         self.king = King()
         self.queen = Queen()
+        self.bishop = Bishop()
+        self.knight = Knight()
 
     def takeInp(self):
         inp = input("\nEnter your pieces location > ")
         temp = input("\nEnter your destination > ") 
         return [inp, temp]
 
-print(""" 
+print("""
     WELCOME TO CHESS IN THE TERMINAL!
 =========================================
         """)
@@ -54,6 +56,8 @@ if __name__ == "__main__":
                 elif main.board.pieceType(coordinates) == 'b':
                     if (coordinates[2], coordinates[3]) in main.bishop.validMoves(coordinates, main.board.theBoard):
                         main.board.move(main.board.theBoard, coordinates)
+                    else:
+                        print("That's not a valid move!")
 
                 elif main.board.pieceType(coordinates) == 'k':
                     main.board.move(main.board.theBoard, coordinates)
