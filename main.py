@@ -1,3 +1,6 @@
+import colorama
+from colorama import Fore
+from colorama import Style
 from pawn import Pawn
 from rook import Rook 
 from king import King 
@@ -5,7 +8,9 @@ from queen import Queen
 from knight import Knight 
 from bishop import Bishop
 from board import Board
+colorama.init()
 
+err = Fore.RED + Style.BRIGHT + "ERROR" + Style.RESET_ALL
 def replacer(s, newstring, index, nofail=False):
     if not nofail and index not in range(len(s)):
         raise ValueError("index outside given string")
@@ -31,21 +36,23 @@ class Main(object):
         inp = input("\nEnter your pieces location > ")
         temp = input("\nEnter your destination > ") 
         return [inp, temp]
-    
+ 
     def validInp(self, inp):
+        return True
+    '''
         if len(inp) != 2:
             return False
         elif inp[0].isalpha() and (inp[1] >= 0 and inp[1] <= 8):
             return True
         else:
             return False
-
+    ''' 
     def piece(self, coordinates):
         if self.board.pieceType(coordinates) == 'p':
             if (coordinates[2], coordinates[3]) in self.pawn.validMoves(coordinates, self.board.theBoard):
                 self.board.move(self.board.theBoard, coordinates)
             else:
-                print("ERROR: That's not a valid move!")
+                print(f"{err}: That's not a valid move!")
 
         elif self.board.pieceType(coordinates) == 'b':
             if (coordinates[2], coordinates[3]) in self.bishop.validMoves(coordinates, self.board.theBoard):
@@ -72,6 +79,7 @@ print("""
 
 if __name__ == "__main__":
     main = Main()
+    x = ''
     while True:
         player = main.board.currentPlayer()
         main.board.printBoard(main.board.theBoard)
