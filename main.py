@@ -1,8 +1,8 @@
 from pawn import Pawn
-from rook import Rook
-from king import King
-from queen import Queen
-from knight import Knight
+from rook import Rook 
+from king import King 
+from queen import Queen 
+from knight import Knight 
 from bishop import Bishop
 from board import Board
 
@@ -31,6 +31,39 @@ class Main(object):
         inp = input("\nEnter your pieces location > ")
         temp = input("\nEnter your destination > ") 
         return [inp, temp]
+    
+    def validInp(self, inp):
+        if len(inp) != 2:
+            return False
+        elif inp[0].isalpha() and (inp[1] >= 0 and inp[1] <= 8):
+            return True
+        else:
+            return False
+
+    def piece(self, coordinates):
+        if self.board.pieceType(coordinates) == 'p':
+            if (coordinates[2], coordinates[3]) in self.pawn.validMoves(coordinates, self.board.theBoard):
+                self.board.move(self.board.theBoard, coordinates)
+            else:
+                print("ERROR: That's not a valid move!")
+
+        elif self.board.pieceType(coordinates) == 'b':
+            if (coordinates[2], coordinates[3]) in self.bishop.validMoves(coordinates, self.board.theBoard):
+                self.board.move(self.board.theBoard, coordinates)
+            else:
+                print("ERROR: That's not a valid move!")
+
+        elif self.board.pieceType(coordinates) == 'k':
+            self.board.move(self.board.theBoard, coordinates)
+        
+        elif self.board.pieceType(coordinates) == 'n':
+            self.board.move(self.board.theBoard, coordinates)
+
+        elif self.board.pieceType(coordinates) == 'q':
+            self.board.move(self.board.theBoard, coordinates)
+
+        elif self.board.pieceType(coordinates) == 'r':
+            self.board.move(self.board.theBoard, coordinates)
 
 print("""
     WELCOME TO CHESS IN THE TERMINAL!
@@ -43,38 +76,17 @@ if __name__ == "__main__":
         player = main.board.currentPlayer()
         main.board.printBoard(main.board.theBoard)
         x = main.takeInp()
-        coordinates = main.board.convertCoordinate(x)
-        if main.board.validPiece(coordinates, main.board.theBoard):
-            if main.board.validateTurn(coordinates):
-
-                if main.board.pieceType(coordinates) == 'p':
-                    if (coordinates[2], coordinates[3]) in main.pawn.validMoves(coordinates, main.board.theBoard):
-                        main.board.move(main.board.theBoard, coordinates)
-                    else:
-                        print("That's not a valid move!")
-
-                elif main.board.pieceType(coordinates) == 'b':
-                    if (coordinates[2], coordinates[3]) in main.bishop.validMoves(coordinates, main.board.theBoard):
-                        main.board.move(main.board.theBoard, coordinates)
-                    else:
-                        print("That's not a valid move!")
-
-                elif main.board.pieceType(coordinates) == 'k':
-                    main.board.move(main.board.theBoard, coordinates)
-                
-                elif main.board.pieceType(coordinates) == 'n':
-                    main.board.move(main.board.theBoard, coordinates)
-
-                elif main.board.pieceType(coordinates) == 'q':
-                    main.board.move(main.board.theBoard, coordinates)
-
-                elif main.board.pieceType(coordinates) == 'r':
-                    main.board.move(main.board.theBoard, coordinates)
-
+        if main.validInp(x):
+            coordinates = main.board.convertCoordinate(x)
+            if main.board.validPiece(coordinates, main.board.theBoard):
+                if main.board.validateTurn(coordinates):
+                    main.piece(coordinates)
+                else:
+                    print("ERROR: That's not valid, try again!")
+                    continue
             else:
-                print("That's not valid, try again!")
+                print("ERROR: The selected piece is not valid")
                 continue
         else:
-            print("The selected piece is not valid")
-            continue
+            print("ERROR: Enter a valid option!")
 
