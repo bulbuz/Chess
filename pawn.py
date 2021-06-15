@@ -1,5 +1,3 @@
-from board import Board 
-
 class Pawn(object):
     def __init__(self):
         pass    
@@ -10,12 +8,16 @@ class Pawn(object):
        
         # valid moves
         if board[location[0]][location[1]].isupper(): # white
-            if board[location[0] - 1][location[1]] == "*" and board[location[0] - 1][location[1]] == "*":
+            if board[location[0] - 1][location[1]] == "*" and board[location[0] - 2][location[1]] == "*":
                 validMoves.append((location[0]-1, location[1]))
+                validMoves.append((location[0]-2, location[1]))
                 if location[0] == 6:
                     validMoves.append((location[0] - 2, location[1]))
+            elif not board[location[0]-1].isalpha():
+                validMoves.append((location[0]-1, location[1]))
+
         else: # black
-            if board[location[0] + 1][location[1]] == "*" and board[location[0] + 1][location[1]] == "*":
+            if board[location[0] + 1][location[1]] == "*" and board[location[0] + 2][location[1]] == "*":
                 validMoves.append((location[0]+1, location[1]))
                 if location[0] == 1:
                     validMoves.append((location[0] + 2, location[1]))

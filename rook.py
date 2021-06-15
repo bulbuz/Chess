@@ -29,11 +29,11 @@ class Rook(object):
                     validMoves.append((location[0]-i, location[1]))
 
             if location[0]+i <= 7 and not blockedPath2: # down
-                if board[location[0]+i][location[1]].isalpha() and board[location[0]+i][location[1]] != board[location[0]+i][location[1]].islower():
+                if board[location[0]+i][location[1]].isalpha() and board[location[0]+i][location[1]] != board[location[0]][location[1]].islower():
                     validMoves.append((location[0]+i,location[1]))
                     blockedPath2 = 1
 
-                elif board[location[0]+i][location[1]].isalpha() and board[location[0]+i][location[1]].islower() == board[location[0]+i][location[1]].islower():
+                elif board[location[0]+i][location[1]].isalpha() and board[location[0]][location[1]].islower() == board[location[0]+i][location[1]].islower():
                     blockedPath2 = 1
 
                 elif not board[location[0]+i][location[1]].isalpha():
@@ -53,17 +53,18 @@ class Rook(object):
                 elif not board[location[0]][location[1]+j].isalpha():
                     validMoves.append((location[0],location[1]+j))
 
-            if location[1]-j >= 0 and not blockedPath4:
+            if location[1]-j >= 0 and not blockedPath4: # left
                 if board[location[0]][location[1]-j].isalpha() and board[location[0]][location[1]].islower() != board[location[0]][location[1]-j].islower():
                     validMoves.append((location[0], location[1]-j))
                     blockedPath4 = 1
                      
-                elif board[location[0]][location[1]].isalpha() and board[location[0]][location[1]].islower() == board[location[0]][location[1]-j].islower():
+                elif board[location[0]][location[1]-j].isalpha() and board[location[0]][location[1]].islower() == board[location[0]][location[1]-j].islower():
                     blockedPath4 = 1
 
-                elif not board[location[0]][location[1]].isalpha():
+                elif not board[location[0]][location[1]-j].isalpha():
                     validMoves.append((location[0], location[1]-j))
 
+        print(validMoves)
         return validMoves
 
 
