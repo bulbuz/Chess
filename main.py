@@ -58,7 +58,7 @@ class Main(object):
             if (coordinates[2], coordinates[3]) in self.bishop.validMoves(coordinates, self.board.theBoard):
                 self.board.move(self.board.theBoard, coordinates)
             else:
-                print("ERROR: That's not a valid move!")
+                print(f"{err}: That's not a valid move!")
 
         elif self.board.pieceType(coordinates) == 'k':
             self.board.move(self.board.theBoard, coordinates)
@@ -70,7 +70,10 @@ class Main(object):
             self.board.move(self.board.theBoard, coordinates)
 
         elif self.board.pieceType(coordinates) == 'r':
-            self.board.move(self.board.theBoard, coordinates)
+            if (coordinates[2], coordinates[3]) in self.rook.validMoves(coordinates, self.board.theBoard):
+                self.board.move(self.board.theBoard, coordinates)
+            else:
+                print(f"{err}: That's not a valid move!")
 
 print("""
     WELCOME TO CHESS IN THE TERMINAL!
@@ -90,11 +93,11 @@ if __name__ == "__main__":
                 if main.board.validateTurn(coordinates):
                     main.piece(coordinates)
                 else:
-                    print("ERROR: That's not valid, try again!")
+                    print(f"{err}: That's not valid, try again!")
                     continue
             else:
-                print("ERROR: The selected piece is not valid")
+                print(f"{err}: The selected piece is not valid")
                 continue
         else:
-            print("ERROR: Enter a valid option!")
+            print(f"{err}: Enter a valid option!")
 

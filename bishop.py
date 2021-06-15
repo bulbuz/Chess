@@ -63,3 +63,5 @@ class Bishop(object):
                     validMoves.append((location[0]-j, location[1]-j))
 
         return validMoves
+
+
