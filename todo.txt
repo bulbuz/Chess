@@ -19,4 +19,16 @@ main loop {
 6. check if won 
 
 
+TODO
+====
+
+- queen movement
+- knight movement
+- king movement (including unavailable squares)
+- castling
+- en passant
+- pins
+- checkmate
+- stalemate
+-  
 

@@ -38,4 +38,3 @@ class Pawn(object):
 
     def promotion(self, location, board):
         pass
-

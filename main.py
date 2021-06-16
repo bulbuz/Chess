@@ -67,7 +67,10 @@ class Main(object):
             self.board.move(self.board.theBoard, coordinates)
 
         elif self.board.pieceType(coordinates) == 'q':
-            self.board.move(self.board.theBoard, coordinates)
+            if (coordinates[2], coordinates[3]) in self.queen.validMoves(coordinates, self.board.theBoard):
+                self.board.move(self.board.theBoard, coordinates)
+            else:
+                print(f"{err}: That's not a valid move!")
 
         elif self.board.pieceType(coordinates) == 'r':
             if (coordinates[2], coordinates[3]) in self.rook.validMoves(coordinates, self.board.theBoard):

@@ -1,10 +1,23 @@
 
 class Rook(object):
     def __init__(self):
-        self.wRook1 = False
-        self.wRook2 = False
-        self.bRook1 = False
-        self.bRook2 = False
+        # check if moved
+        self.wRook1 = False # left rook
+        self.wRook2 = False # right rook
+        self.bRook1 = False # left rook
+        self.bRook2 = False # right rook
+  
+    def castling(self, location, board):
+        if board[location[0]][location[1]].islower():
+            if (location[0], location[1]) == (0,0):
+                self.bRook1 = True
+            elif (location[0], location[1]) == (7,0):
+                self.bRook2 = True
+        else:
+            if (location[0], location[1]) == (7,0):
+                self.wRook1 = True
+            elif (location[0], location[1]) == (7,7):
+                self.wRook2 = True
 
     def validMoves(self, location, board):
         validMoves = []
@@ -29,7 +42,7 @@ class Rook(object):
                     validMoves.append((location[0]-i, location[1]))
 
             if location[0]+i <= 7 and not blockedPath2: # down
-                if board[location[0]+i][location[1]].isalpha() and board[location[0]+i][location[1]] != board[location[0]][location[1]].islower():
+                if board[location[0]+i][location[1]].isalpha() and board[location[0]+i][location[1]].islower() != board[location[0]][location[1]].islower():
                     validMoves.append((location[0]+i,location[1]))
                     blockedPath2 = 1
 
@@ -63,8 +76,6 @@ class Rook(object):
 
                 elif not board[location[0]][location[1]-j].isalpha():
                     validMoves.append((location[0], location[1]-j))
-
-        print(validMoves)
         return validMoves
 
 
