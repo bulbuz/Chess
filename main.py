@@ -49,12 +49,14 @@ class Main(object):
     ''' 
     def piece(self, coordinates):
         if self.board.pieceType(coordinates) == 'p':
+            print(f"pawn: {self.pawn.validMoves(coordinates, self.board.theBoard)}") 
             if (coordinates[2], coordinates[3]) in self.pawn.validMoves(coordinates, self.board.theBoard):
                 self.board.move(self.board.theBoard, coordinates)
             else:
                 print(f"{err}: That's not a valid move!")
 
         elif self.board.pieceType(coordinates) == 'b':
+            print(f"bishop: {self.bishop.validMoves(coordinates, self.board.theboard)}") 
             if (coordinates[2], coordinates[3]) in self.bishop.validMoves(coordinates, self.board.theBoard):
                 self.board.move(self.board.theBoard, coordinates)
             else:
@@ -67,6 +69,7 @@ class Main(object):
             self.board.move(self.board.theBoard, coordinates)
 
         elif self.board.pieceType(coordinates) == 'q':
+            print(f"queen: {self.queen.validMoves(coordinates, self.board.theBoard)}")
             if (coordinates[2], coordinates[3]) in self.queen.validMoves(coordinates, self.board.theBoard):
                 self.board.move(self.board.theBoard, coordinates)
             else:

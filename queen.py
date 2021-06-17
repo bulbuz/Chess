@@ -108,10 +108,10 @@ class Queen(Piece):
 
             if location[1]-n >= 0 and not blockedPath4: # left
                 if board[location[0]][location[1]-n].isalpha() and board[location[0]][location[1]].islower() != board[location[0]][location[1]-n].islower():
-                    validMoves.append((location[0], location[1]-j))
+                    validMoves.append((location[0], location[1]-n))
                     blockedPath4 = 1
                      
-                elif board[location[0]][location[1]-j].isalpha() and board[location[0]][location[1]].islower() == board[location[0]][location[1]-n].islower():
+                elif board[location[0]][location[1]-n].isalpha() and board[location[0]][location[1]].islower() == board[location[0]][location[1]-n].islower():
                     blockedPath4 = 1
 
                 elif not board[location[0]][location[1]-n].isalpha():
