@@ -1,5 +1,5 @@
 from piece import Piece
-from main import Main
+from board import Board
 
 class Knight(Piece):
     def __init__(self):
@@ -7,18 +7,19 @@ class Knight(Piece):
 
     def validMoves(self, location, board):
         validMoves = []
-
-        x = 0
-        y = 0
-        
-        for i in range(8):
-            if board[location[0]][location[0]].islower(): # down left
-                if location[0]+2 <= 8 and location[1] <=8:
-                    if board[location[0]+2][location[1]+1].isalpha() and board[location[0]][location[1]].islower() != board[location[0]+2][location[1]+1].islower():
-                        validMoves.append((location[0]+2, location[1]+1))
-        print(validMoves)
-        return validMoves
        
-m = Main()
+        if location[0]+2 <= 7 location[1]+2 <= 7:
+            if board[location[0]][location[1]].islower(): # black
+                if board[location[0]+2][location[1]+1].isalpha() and board[location[0]+2][location[1]+1].islower() != board[location[0]][location[1]].islower():
+                    validMoves.append(board[location[0]+2][location[1]+1])
+                elif board[location[0]+2][location[1]+1]
+                    pass
+            else: # white
+                pass
+
+        return validMoves
+
+loc = [3,3]
+b = Board()
 k = Knight()
-k.validMoves()
+print(k.validMoves(loc, b.theBoard))

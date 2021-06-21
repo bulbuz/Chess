@@ -66,8 +66,9 @@ class Main(object):
             self.board.move(self.board.theBoard, coordinates)
         
         elif self.board.pieceType(coordinates) == 'n':
-            if (coordinates[2], coordinates[3]) in self.knight.validMoves(coordinates, self.board.theBoard):
-                self.board.move(self.board.theBoard, coordinates)
+            #if (coordinates[2], coordinates[3]) in self.knight.validMoves(coordinates, self.board.theBoard):
+            print(self.knight.validMoves(coordinates, self.board.theBoard))
+            self.board.move(self.board.theBoard, coordinates)
 
         elif self.board.pieceType(coordinates) == 'q':
             print(f"queen: {self.queen.validMoves(coordinates, self.board.theBoard)}")
