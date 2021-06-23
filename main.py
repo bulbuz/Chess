@@ -47,7 +47,8 @@ class Main(object):
         else:
             return False
     ''' 
-    def piece(self, coordinates):
+
+    def piece(self, coordinates, player):
         if self.board.pieceType(coordinates) == 'p':
             print(f"pawn: {self.pawn.validMoves(coordinates, self.board.theBoard)}") 
             if (coordinates[2], coordinates[3]) in self.pawn.validMoves(coordinates, self.board.theBoard):
@@ -63,14 +64,16 @@ class Main(object):
                 print(f"{err}: That's not a valid move!")
 
         elif self.board.pieceType(coordinates) == 'k':
-            self.board.move(self.board.theBoard, coordinates)
+            if (coordinates[2], coordinates[3]) in self.king.validMoves(coordinates, self.board.theBoard, player, self.rook.wRook1, self.rook.wRook2, self.rook.bRook1, self.rook.bRook2):
+                self.board.move(self.board.theBoard, coordinates)
         
         elif self.board.pieceType(coordinates) == 'n':
             print(self.knight.validMoves(coordinates, self.board.theBoard))
             if (coordinates[2], coordinates[3]) in self.knight.validMoves(coordinates, self.board.theBoard):
                 self.board.move(self.board.theBoard, coordinates)
             else:
-                print("KNIGHT ERROR")
+                print(f"{err}: That's not a valid move!")
+
         elif self.board.pieceType(coordinates) == 'q':
             print(f"queen: {self.queen.validMoves(coordinates, self.board.theBoard)}")
             if (coordinates[2], coordinates[3]) in self.queen.validMoves(coordinates, self.board.theBoard):
@@ -100,7 +103,7 @@ if __name__ == "__main__":
             coordinates = main.board.convertCoordinate(x)
             if main.board.validPiece(coordinates, main.board.theBoard):
                 if main.board.validateTurn(coordinates):
-                    main.piece(coordinates)
+                    main.piece(coordinates, player)
                 else:
                     print(f"{err}: That's not valid, try again!")
                     continue
