@@ -64,8 +64,10 @@ class Main(object):
                 print(f"{err}: That's not a valid move!")
 
         elif self.board.pieceType(coordinates) == 'k':
-            if (coordinates[2], coordinates[3]) in self.king.validMoves(coordinates, self.board.theBoard, player, self.rook.wRook1, self.rook.wRook2, self.rook.bRook1, self.rook.bRook2):
+            if (coordinates[2], coordinates[3]) in self.king.validMoves(coordinates, self.board.theBoard) or ((coordinates[2], coordinates[3]) in self.king.castle(coordinates, self.board.theBoard, player, self.rook.wRook1, self.rook.wRook2, self.rook.bRook1, self.rook.bRook2)):
                 self.board.move(self.board.theBoard, coordinates)
+            else:
+                print(f"{err}: That's not a valid move!")
         
         elif self.board.pieceType(coordinates) == 'n':
             print(self.knight.validMoves(coordinates, self.board.theBoard))

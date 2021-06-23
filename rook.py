@@ -13,7 +13,8 @@ class Rook(object):
         if board[location[0]][location[1]].islower():
             if (location[0], location[1]) == (0,0):
                 self.bRook1 = True
-            elif (location[0], location[1]) == (7,0): self.bRook2 = True else:
+            elif (location[0], location[1]) == (7,0): self.bRook2 = True 
+        else:
             if (location[0], location[1]) == (7,0):
                 self.wRook1 = True
             elif (location[0], location[1]) == (7,7):
