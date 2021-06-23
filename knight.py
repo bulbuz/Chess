@@ -57,10 +57,5 @@ class Knight(Piece):
             elif board[location[0]+1][location[1]+2] == "*":
                 validMoves.append((location[0]+1, location[1]+2))
 
-        print(len(validMoves))
         return validMoves
 
-loc = [4,3]
-b = Board()
-k = Knight()
-print(k.validMoves(loc, b.theBoard))

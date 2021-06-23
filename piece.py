@@ -7,3 +7,6 @@ class Piece:
     def pin(self):
         pass
 
+    def check(self):
+        pass
+

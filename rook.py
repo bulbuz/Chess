@@ -20,6 +20,18 @@ class Rook(object):
                 self.wRook2 = True
 
     def validMoves(self, location, board):
+        
+        if board[location[0]][location[1]].islower():
+            if (location[0], location[1]) == (0,0):
+                self.bRook1 = True
+            elif (location[0], location[1]) == (7,0):
+                self.bRook2 = True
+        else:
+            if (location[0], location[1]) == (7,0):
+                self.wRook1 = True
+            elif (location[0], location[1]) == (7,7):
+                self.wRook2 = True
+
         validMoves = []
 
         blockedPath1 = False
@@ -76,6 +88,7 @@ class Rook(object):
 
                 elif not board[location[0]][location[1]-j].isalpha():
                     validMoves.append((location[0], location[1]-j))
+
         return validMoves
 
 
