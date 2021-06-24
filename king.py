@@ -9,12 +9,18 @@ class King(object):
     def castle(self, location, board, wRook1, wRook2, bRook1, bRook2):
         validMoves = [] 
 
+        if board[location[0]][location[1]].islower():
+            self.isMovedb = True
+
+        if board[location[0]][location[1]].isupper():
+            self.isMovedw = True
+
         if board[location[0]][location[1]].isupper():
             if (board[7][5] == "*" and board[7][6] == "*") and (self.isMovedw == False and wRook2 == False):
                 validMoves.append((7,6))
                 #move()
 
-            if (board[7][1] == "*" and board[7][2] == "*" and board[7][3] == "*") and not (self.isMovedw and wRook1):
+            if (board[7][1] == "*" and board[7][2] == "*" and board[7][3] == "*") and (self.isMovedw == False and wRook1 ==  False):
                 validMoves.append((7,2))
 
         if board[location[0]][location[1]].islower():

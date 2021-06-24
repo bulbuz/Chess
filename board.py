@@ -60,7 +60,7 @@ class Board(object):
 
         return newColumn, newRow, destColumn, destRow 
 
-    def move(self, board, position): 
+    def move(self, board, position, add=True): 
         column = position[0]
         row = position[1]
         destColumn = position[2]
@@ -75,9 +75,11 @@ class Board(object):
 
         dest = replacer(board[destColumn], piece, destRow) 
         board[destColumn] = dest
+        if add:
+            self.moves += 1 # add everytime a player moves
 
-        self.moves += 1 # add everytime a player moves
         return board
+
 
     def validateTurn(self, move): # takes in the coordinates of the piece
         if self.moves % 2 == 0:
