@@ -1,33 +1,4 @@
 
-def replacer(s, newstring, index, nofail=False):
-    if not nofail and index not in range(len(s)):
-        raise ValueError("index outside given string")
-
-    if index < 0:  
-        return newstring + s
-    if index > len(s):
-        return s + newstring
-
-    return s[:index] + newstring + s[index + 1:]
-
-def move(self, board, position): 
-    column = position[0]
-    row = position[1]
-    destColumn = position[2]
-    destRow = position[3]
-    piece = board[column][row]
-    
-    # remove the piece and replace it with an empty slot
-    newRow = replacer(board[column], '*', row)
-    board[column] = newRow
-    
-    # put the piece at the wanted position 
-
-    dest = replacer(board[destColumn], piece, destRow) 
-    board[destColumn] = dest
-
-    return board
-
 class King(object):
     def __init__(self):
         self.inCheck = False
@@ -37,8 +8,6 @@ class King(object):
 
     def castle(self, location, board, wRook1, wRook2, bRook1, bRook2):
         validMoves = [] 
-
-        print(f'debug: {self.isMovedw} ')
 
         if board[location[0]][location[1]].isupper():
             if (board[7][5] == "*" and board[7][6] == "*") and (self.isMovedw == False and wRook2 == False):
