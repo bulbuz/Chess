@@ -22,13 +22,9 @@ main loop {
 TODO
 ====
 
-- queen movement
-- knight movement
-- king movement (including unavailable squares)
-- castling
 - en passant
+- unavailable squares (king)
 - pins
 - checkmate
-- stalemate
--  
+- stalemate 
 
