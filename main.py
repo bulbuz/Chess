@@ -77,23 +77,31 @@ class Main(object):
                 # move the rook
                 if (coordinates[2], coordinates[3]) == (7,6):
                     self.board.move(self.board.theBoard, (7,7,7,5), add=False) 
+                    self.rook.wRook2 = True
 
                 if (coordinates[2], coordinates[3]) == (7,2):
                     self.board.move(self.board.theBoard, (7,0,7,3), add=False) 
+                    self.rook.wRook1 = True
                 
                 if (coordinates[2], coordinates[3]) == (0,6):
                     self.board.move(self.board.theBoard, (0,7,0,5), add=False)
+                    self.rook.bRook2 = True
 
                 if (coordinates[2], coordinates[3]) == (0,2):
                     self.board.move(self.board.theBoard, (0,0,0,3), add=False)
+                    self.rook.bRook1 = True
                  
             elif (coordinates[2], coordinates[3]) in self.king.validMoves(coordinates, self.board.theBoard):
-                self.board.move(self.board.theBoard, coordinates)
+
+                print(self.board.theBoard[coordinates[0]][coordinates[1]])
+
                 if self.board.theBoard[coordinates[0]][coordinates[1]].islower():
                     self.king.isMovedb = True
 
                 if self.board.theBoard[coordinates[0]][coordinates[1]].isupper():
                     self.king.isMovedw = True
+
+                self.board.move(self.board.theBoard, coordinates)
 
             else:
                 print(f"{err}: That's not a valid move!")
