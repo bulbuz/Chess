@@ -48,7 +48,7 @@ class Main(object):
             return False
     ''' 
 
-    def piece(self, coordinates, player):
+    def piece(self, coordinates):
         if self.board.pieceType(coordinates) == 'p':
             print(f"pawn: {self.pawn.validMoves(coordinates, self.board.theBoard)}") 
             if (coordinates[2], coordinates[3]) in self.pawn.validMoves(coordinates, self.board.theBoard):
@@ -64,8 +64,15 @@ class Main(object):
                 print(f"{err}: That's not a valid move!")
 
         elif self.board.pieceType(coordinates) == 'k':
-            if ((coordinates[2], coordinates[3]) in self.king.castle(coordinates, self.board.theBoard, self.rook.wRook1, self.rook.wRook2, self.rook.bRook1, self.rook.bRook2)):
+            if (coordinates[2], coordinates[3]) in self.king.castle(coordinates, self.board.theBoard, self.rook.wRook1, self.rook.wRook2, self.rook.bRook1, self.rook.bRook2):
+                if self.board.theBoard[coordinates[0]][coordinates[1]].islower():
+                    self.king.isMovedb = True
+
+                if self.board.theBoard[coordinates[0]][coordinates[1]].isupper():
+                    self.king.isMovedw = True
+
                 self.board.move(self.board.theBoard, coordinates)
+
 
                 # move the rook
                 if (coordinates[2], coordinates[3]) == (7,6):
@@ -82,6 +89,12 @@ class Main(object):
                  
             elif (coordinates[2], coordinates[3]) in self.king.validMoves(coordinates, self.board.theBoard):
                 self.board.move(self.board.theBoard, coordinates)
+                if self.board.theBoard[coordinates[0]][coordinates[1]].islower():
+                    self.king.isMovedb = True
+
+                if self.board.theBoard[coordinates[0]][coordinates[1]].isupper():
+                    self.king.isMovedw = True
+
             else:
                 print(f"{err}: That's not a valid move!")
         
@@ -121,7 +134,7 @@ if __name__ == "__main__":
             coordinates = main.board.convertCoordinate(x)
             if main.board.validPiece(coordinates, main.board.theBoard):
                 if main.board.validateTurn(coordinates):
-                    main.piece(coordinates, player)
+                    main.piece(coordinates)
                 else:
                     print(f"{err}: That's not valid, try again!")
                     continue

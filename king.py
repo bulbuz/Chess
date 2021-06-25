@@ -4,21 +4,13 @@ class King(object):
         self.inCheck = False
         self.isMovedb = False
         self.isMovedw = False
-        self.isCastled = False
 
     def castle(self, location, board, wRook1, wRook2, bRook1, bRook2):
         validMoves = [] 
-
-        if board[location[0]][location[1]].islower():
-            self.isMovedb = True
-
-        if board[location[0]][location[1]].isupper():
-            self.isMovedw = True
-
+        
         if board[location[0]][location[1]].isupper():
             if (board[7][5] == "*" and board[7][6] == "*") and (self.isMovedw == False and wRook2 == False):
                 validMoves.append((7,6))
-                #move()
 
             if (board[7][1] == "*" and board[7][2] == "*" and board[7][3] == "*") and (self.isMovedw == False and wRook1 ==  False):
                 validMoves.append((7,2))
@@ -35,13 +27,7 @@ class King(object):
 
     def validMoves(self, location, board):
         validMoves = [] 
-        # check if moved
-        if board[location[0]][location[1]].islower():
-            self.isMovedb = True
-
-        if board[location[0]][location[1]].isupper():
-            self.isMovedw = True
-
+        
         # moves 
         piece = board[location[0]][location[1]]
 
