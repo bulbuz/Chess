@@ -82,3 +82,6 @@ class King(object):
         print(validMoves)
         return validMoves
 
+    def twoKings(self):
+        pass
+

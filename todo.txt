@@ -22,6 +22,7 @@ main loop {
 TODO
 ====
 
+- input validation
 - en passant
 - unavailable squares (king)
 - pins

@@ -1,6 +1,6 @@
 class Pawn(object):
     def __init__(self):
-        pass    
+        pass 
 
     def validMoves(self, location, board): # the location of the piece (tuple d2,d4)
         validMoves = []
