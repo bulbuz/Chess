@@ -49,6 +49,7 @@ class Main(object):
     ''' 
 
     def piece(self, coordinates):
+
         if self.board.pieceType(coordinates) == 'p':
             print(f"pawn: {self.pawn.validMoves(coordinates, self.board.theBoard)}") 
             if (coordinates[2], coordinates[3]) in self.pawn.validMoves(coordinates, self.board.theBoard):
@@ -68,11 +69,8 @@ class Main(object):
                 if self.board.theBoard[coordinates[0]][coordinates[1]].islower():
                     self.king.isMovedb = True
 
-                if self.board.theBoard[coordinates[0]][coordinates[1]].isupper():
-                    self.king.isMovedw = True
-
+                if self.board.theBoard[coordinates[0]][coordinates[1]].isupper(): self.king.isMovedw = True 
                 self.board.move(self.board.theBoard, coordinates)
-
 
                 # move the rook
                 if (coordinates[2], coordinates[3]) == (7,6):
@@ -126,6 +124,57 @@ class Main(object):
                 self.board.move(self.board.theBoard, coordinates)
             else:
                 print(f"{err}: That's not a valid move!")
+        
+    def occupiedSquares(self, coordinates, team): # team refers to black or white
+        print(coordinates)
+        validMovesw = []
+        validMovesb = []
+
+        for row in self.board.theBoard:
+            for piece in row:
+                if piece.islower():
+                    if piece == 'p':
+                        validMovesb.append(self.pawn.validMoves(coordinates, self.board.theBoard))
+                    
+                    elif piece == 'n':
+                        validMovesb.append(self.knight.validMoves(coordinates, self.board.theBoard))
+                
+                    elif piece == 'b':
+                        validMovesb.append(self.bishop.validMoves(coordinates, self.board.theBoard))
+
+                    elif piece == 'q':
+                        validMovesb.append(self.queen.validMoves(coordinates, self.board.theBoard))
+                    
+                    elif piece == 'r':
+                        validMovesb.append(self.rook.validMoves(coordinates, self.board.theBoard))
+
+                if piece.isupper():
+                    if piece == 'P':
+                        if len(self.pawn.validMoves(coordinates, self.board.theBoard)) > 0:
+                            validMovesb.append(self.pawn.validMoves(coordinates, self.board.theBoard))
+                    
+                    elif piece == 'N':
+                        if len(self.knight.validMoves(coordinates, self.board.theBoard)) > 0:
+                            validMovesb.append(self.knight.validMoves(coordinates, self.board.theBoard))
+                
+                    elif piece == 'B':
+                        if len(self.bishop.validMoves(coordinates, self.board.theBoard)) > 0:
+                            validMovesb.append(self.bishop.validMoves(coordinates, self.board.theBoard))
+
+                    elif piece == 'Q':
+                        if len(self.queen.validMoves(coordinates, self.board.theBoard)) > 0:
+                            validMovesb.append(self.queen.validMoves(coordinates, self.board.theBoard))
+                    
+                    elif piece == 'R':
+                        if len(self.rook.validMoves(coordinates, self.board.theBoard)) > 0: 
+                            validMovesb.append(self.rook.validMoves(coordinates, self.board.theBoard))
+
+        print(validMovesb) 
+        print(validMovesw) 
+        if team:
+            return validMovesw
+        else:
+            return validMovesb
 
 print("""
     WELCOME TO CHESS IN THE TERMINAL!
@@ -143,6 +192,7 @@ if __name__ == "__main__":
             if main.board.validPiece(coordinates, main.board.theBoard):
                 if main.board.validateTurn(coordinates):
                     main.piece(coordinates)
+                    main.occupiedSquares(coordinates, True)
                 else:
                     print(f"{err}: That's not valid, try again!")
                     continue

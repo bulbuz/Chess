@@ -25,7 +25,7 @@ class Board(object):
             '********',#4
             '********',#5
             'PPPPPPPP',#6
-            'R***K**R']#7 
+            'RNBQKBNR']#7 
         self.lexographic = {'a': 0, 'b': 1, 'c':2, 'd':3, 'e':4, 'f':5, 'g':6, 'h':7}
         self.moves = 0 # keeps track of the moves
         self.player = 0 # 0 is white

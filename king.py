@@ -1,7 +1,8 @@
 
 class King(object):
     def __init__(self):
-        self.inCheck = False
+        self.inCheckw = False
+        self.inCheckb = False
         self.isMovedb = False
         self.isMovedw = False
 
@@ -79,7 +80,6 @@ class King(object):
             elif board[location[0]+1][location[1]-1] == "*":
                 validMoves.append((location[0]+1, location[1]-1))
 
-        print(validMoves)
         return validMoves
 
     def twoKings(self):
