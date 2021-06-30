@@ -17,11 +17,13 @@ main loop {
 5. move piece
 
 6. check if won 
-
+}
 
 TODO
 ====
 
+- generate occupied squares by each team (pay attention to pawns since their forward movement isn't occupation)
+- check
 - input validation
 - en passant
 - unavailable squares (king)

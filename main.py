@@ -125,13 +125,19 @@ class Main(object):
             else:
                 print(f"{err}: That's not a valid move!")
         
-    def occupiedSquares(self, coordinates, team): # team refers to black or white
-        print(coordinates)
+    def occupiedSquares(self, team): # team refers to black or white
         validMovesw = []
         validMovesb = []
 
-        for row in self.board.theBoard:
-            for piece in row:
+        for i in range(8):
+            for j in range(8):
+                piece = self.board.theBoard[i][j]
+                if not piece.isalpha(): 
+                    continue
+                
+                coordinates = (i,j) 
+                print(coordinates)
+
                 if piece.islower():
                     if piece == 'p':
                         validMovesb.append(self.pawn.validMoves(coordinates, self.board.theBoard))
@@ -170,7 +176,7 @@ class Main(object):
                             validMovesb.append(self.rook.validMoves(coordinates, self.board.theBoard))
 
         print(validMovesb) 
-        print(validMovesw) 
+        #print(validMovesw) 
         if team:
             return validMovesw
         else:
@@ -186,13 +192,13 @@ if __name__ == "__main__":
     while True:
         player = main.board.currentPlayer()
         main.board.printBoard(main.board.theBoard)
+        main.occupiedSquares(True)
         x = main.takeInp()
         if main.validInp(x):
             coordinates = main.board.convertCoordinate(x)
             if main.board.validPiece(coordinates, main.board.theBoard):
                 if main.board.validateTurn(coordinates):
                     main.piece(coordinates)
-                    main.occupiedSquares(coordinates, True)
                 else:
                     print(f"{err}: That's not valid, try again!")
                     continue
