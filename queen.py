@@ -1,6 +1,5 @@
-from piece import Piece
 
-class Queen(Piece):
+class Queen(object):
     def __init__(self):
         pass
 

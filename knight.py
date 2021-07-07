@@ -1,7 +1,5 @@
-from piece import Piece
-from board import Board
 
-class Knight(Piece):
+class Knight(object):
     def __init__(self):
         pass
 

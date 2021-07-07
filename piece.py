@@ -1,15 +1,17 @@
+from main import Main
 
-
+main = Main()
 class Piece:
     def __init__(self):
-        pass
+        m = Main()
 
     def pin(self):
         pass
 
-    def check(self, validMoves, board):
-        for coordinates in validMoves:
-            for idx, value in enumerate(coordinates):
-                if board[value][idx+1] == 'k':
-                    return True
+    def check(self, board):
+        square = main.occupiedSquares(True)
+        print(square)
 
+p = Piece()
+m = Main()
+p.check(m.board.theBoard)

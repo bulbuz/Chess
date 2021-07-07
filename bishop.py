@@ -1,6 +1,5 @@
-from piece import Piece
 
-class Bishop(Piece):
+class Bishop(object):
     def __init__(self):
         pass
 
@@ -64,5 +63,3 @@ class Bishop(Piece):
                     validMoves.append((location[0]-j, location[1]-j))
 
         return validMoves
-
-
