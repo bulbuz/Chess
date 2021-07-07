@@ -192,8 +192,9 @@ print("""
 =========================================
         """)
 
-if __name__ == "__main__":
-    main = Main()
+main = Main()
+
+def start():
     while True:
         player = main.board.currentPlayer()
         main.board.printBoard(main.board.theBoard)
@@ -212,4 +213,7 @@ if __name__ == "__main__":
                 continue
         else:
             print(f"{err}: Enter a valid option!")
+
+if __name__ == "__main__":
+    start()
 

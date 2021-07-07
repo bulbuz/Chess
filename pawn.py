@@ -12,7 +12,7 @@ class Pawn(object):
                 validMoves.append((location[0]-1, location[1]))
                 if board[location[0]-2][location[1]] == "*":
                     validMoves.append((location[0]-2, location[1]))
-
+        
         else: # black
             if board[location[0] + 1][location[1]] == "*":
                 validMoves.append((location[0]+1, location[1]))

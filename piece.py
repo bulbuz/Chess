@@ -1,7 +1,7 @@
 from main import Main
 
 main = Main()
-class Piece:
+class Piece(object):
     def __init__(self):
         m = Main()
 
@@ -9,9 +9,11 @@ class Piece:
         pass
 
     def check(self, board):
+        check = False 
         square = main.occupiedSquares(True)
-        print(square)
+
+        return check
 
 p = Piece()
 m = Main()
-p.check(m.board.theBoard)
+print(p.check(m.board.theBoard))
