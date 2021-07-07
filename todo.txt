@@ -19,13 +19,15 @@ main loop {
 6. check if won 
 }
 
+generate occupied squares by each team (pay attention to pawns since their forward movement isn't occupation)
+
 TODO
 ====
 
-- generate occupied squares by each team (pay attention to pawns since their forward movement isn't occupation)
 - check
 - input validation
 - en passant
+- pawn promotion
 - unavailable squares (king)
 - pins
 - checkmate

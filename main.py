@@ -1,6 +1,6 @@
 import colorama
 from colorama import Fore
-from colorama import Style
+from colorama import Style 
 from pawn import Pawn
 from rook import Rook 
 from king import King 
@@ -139,7 +139,7 @@ class Main(object):
 
                 if piece.islower():
                     if piece == 'p':
-                        if len(self.pawn.validMoves(coordinates, self.board.theBoard)) > 0:
+                        if len(self.pawn.validMoves(coordinates, self.board.theBoard, True)) > 0:
                             validMovesb.append(self.pawn.validMoves(coordinates, self.board.theBoard))
                     
                     elif piece == 'n':
@@ -158,10 +158,10 @@ class Main(object):
                         if len(self.rook.validMoves(coordinates, self.board.theBoard)) > 0: 
                             validMovesb.append(self.rook.validMoves(coordinates, self.board.theBoard))
 
-                elif piece.isupper():
+                else:
                     if piece == 'P':
-                        if len(self.pawn.validMoves(coordinates, self.board.theBoard)) > 0:
-                            validMovesw.append(self.pawn.validMoves(coordinates, self.board.theBoard))
+                        if len(self.pawn.validMoves(coordinates, self.board.theBoard, True)) > 0:
+                           validMovesw.append(self.pawn.validMoves(coordinates, self.board.theBoard))
                     
                     elif piece == 'N':
                         if len(self.knight.validMoves(coordinates, self.board.theBoard)) > 0:
@@ -196,9 +196,10 @@ main = Main()
 
 def start():
     while True:
+        print(main.occupiedSquares(True))
         player = main.board.currentPlayer()
         main.board.printBoard(main.board.theBoard)
-        main.occupiedSquares(True)
+        #main.occupiedSquares(True)
         x = main.takeInp()
         if main.validInp(x):
             coordinates = main.board.convertCoordinate(x)

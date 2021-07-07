@@ -11,6 +11,7 @@ class Piece(object):
     def check(self, board):
         check = False 
         square = main.occupiedSquares(True)
+         
 
         return check
 
