@@ -20,10 +20,9 @@ class King(object):
             if (board[0][5] == "*" and board[0][6] == "*") and not (self.isMovedb and bRook2):
                 validMoves.append((0,6))
 
-            if (board[0][1] == "*" and board[0][2] == "*" and board[0][3] == "*") and not (self.isMovedb and bRook1):
+            if (board[0][1] == "*" and board[0][2] == "*" and board[0][3] == "*") and (self.isMovedb == False and bRook1 == False):
                 validMoves.append((0,2))
 
-        print(validMoves)
         return validMoves
 
     def validMoves(self, location, board):
@@ -80,8 +79,5 @@ class King(object):
             elif board[location[0]+1][location[1]-1] == "*":
                 validMoves.append((location[0]+1, location[1]-1))
 
+        print(f"validMoves: {validMoves}")
         return validMoves
-
-    def twoKings(self):
-        pass
-

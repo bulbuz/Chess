@@ -69,7 +69,9 @@ class Main(object):
                 if self.board.theBoard[coordinates[0]][coordinates[1]].islower():
                     self.king.isMovedb = True
 
-                if self.board.theBoard[coordinates[0]][coordinates[1]].isupper(): self.king.isMovedw = True 
+                if self.board.theBoard[coordinates[0]][coordinates[1]].isupper(): 
+                    self.king.isMovedw = True 
+
                 self.board.move(self.board.theBoard, coordinates)
 
                 # move the rook
@@ -90,8 +92,6 @@ class Main(object):
                     self.rook.bRook1 = True
                  
             elif (coordinates[2], coordinates[3]) in self.king.validMoves(coordinates, self.board.theBoard):
-
-                print(self.board.theBoard[coordinates[0]][coordinates[1]])
 
                 if self.board.theBoard[coordinates[0]][coordinates[1]].islower():
                     self.king.isMovedb = True
@@ -122,6 +122,19 @@ class Main(object):
             print(f"rook: {self.rook.validMoves(coordinates, self.board.theBoard)}")
             if (coordinates[2], coordinates[3]) in self.rook.validMoves(coordinates, self.board.theBoard):
                 self.board.move(self.board.theBoard, coordinates)
+                
+                if (coordinates[0], coordinates[1]) == (7,7):
+                    self.rook.wRook2 = True
+
+                if (coordinates[0], coordinates[1]) == (7,0):
+                    self.rook.wRook1 = True
+                
+                if (coordinates[0], coordinates[1]) == (0,7):
+                    self.rook.bRook2 = True
+
+                if (coordinates[0], coordinates[1]) == (0,0):
+                    self.rook.bRook1 = True
+
             else:
                 print(f"{err}: That's not a valid move!")
         
@@ -196,7 +209,7 @@ main = Main()
 
 def start():
     while True:
-        print(main.occupiedSquares(True))
+        #print(main.occupiedSquares(True))
         player = main.board.currentPlayer()
         main.board.printBoard(main.board.theBoard)
         #main.occupiedSquares(True)
@@ -214,6 +227,9 @@ def start():
                 continue
         else:
             print(f"{err}: Enter a valid option!")
+        
+        print(f"Right white rook: {main.rook.wRook2}")
+        print(f"Left white rook: {main.rook.wRook1}")
 
 if __name__ == "__main__":
     start()
