@@ -7,8 +7,8 @@ class King(object):
         self.isMovedw = False
 
     def castle(self, location, board, wRook1, wRook2, bRook1, bRook2):
-        validMoves = [] 
-        
+        validMoves = []
+
         if board[location[0]][location[1]].isupper():
             if (board[7][5] == "*" and board[7][6] == "*") and (self.isMovedw == False and wRook2 == False):
                 validMoves.append((7,6))
@@ -26,9 +26,9 @@ class King(object):
         return validMoves
 
     def validMoves(self, location, board):
-        validMoves = [] 
-        
-        # moves 
+        validMoves = []
+
+        # moves
         piece = board[location[0]][location[1]]
 
         if location[0]+1 <= 7:
@@ -54,7 +54,7 @@ class King(object):
                 validMoves.append(location[0], location[1]-1)
             elif board[location[0]][location[1]-1] == "*":
                 validMoves.append((location[0], location[1]-1))
-       
+
         if location[0]-1 >= 0 and location[1]+1 <= 7:
             if board[location[0]-1][location[1]+1].isalpha() and board[location[0]-1][location[1]+1].islower() != piece.islower():
                 validMoves.append((location[0]-1, location[1]+1))
@@ -79,5 +79,14 @@ class King(object):
             elif board[location[0]+1][location[1]-1] == "*":
                 validMoves.append((location[0]+1, location[1]-1))
 
-        print(f"validMoves: {validMoves}")
         return validMoves
+
+    def getPos(self, board, color):
+        for i in range(len(board)):
+            for j in range(len(board)):
+                if color:
+                    if board[i][j] == "K":
+                        return (i,j)
+                else:
+                    if board[i][j] == "k":
+                        return (i,j)

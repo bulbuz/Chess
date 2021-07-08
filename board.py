@@ -7,7 +7,7 @@ def replacer(s, newstring, index, nofail=False):
     if not nofail and index not in range(len(s)):
         raise ValueError("index outside given string")
 
-    if index < 0:  
+    if index < 0:
         return newstring + s
     if index > len(s):
         return s + newstring
@@ -21,11 +21,11 @@ class Board(object):
             'r***k**r',#0
             'pppppppp',#1
             '********',#2
-            '********',#3
-            '********',#4
+            '****p***',#3
+            '***K****',#4
             '********',#5
             'PPPPPPPP',#6
-            'R***K**R']#7 
+            'R***K**R']#7
         self.lexographic = {'a': 0, 'b': 1, 'c':2, 'd':3, 'e':4, 'f':5, 'g':6, 'h':7}
         self.moves = 0 # keeps track of the moves
         self.player = 0 # 0 is white
@@ -55,25 +55,25 @@ class Board(object):
         newColumn = 8 - int(column)
         destColumn = 8 - int(destColumn)
 
-        newRow = self.lexographic[row] 
+        newRow = self.lexographic[row]
         destRow = self.lexographic[destRow]
 
-        return newColumn, newRow, destColumn, destRow 
+        return newColumn, newRow, destColumn, destRow
 
-    def move(self, board, position, add=True): 
+    def move(self, board, position, add=True):
         column = position[0]
         row = position[1]
         destColumn = position[2]
         destRow = position[3]
         piece = board[column][row]
-        
+
         # remove the piece and replace it with an empty slot
         newRow = replacer(board[column], '*', row)
         board[column] = newRow
-        
-        # put the piece at the wanted position 
 
-        dest = replacer(board[destColumn], piece, destRow) 
+        # put the piece at the wanted position
+
+        dest = replacer(board[destColumn], piece, destRow)
         board[destColumn] = dest
         if add:
             self.moves += 1 # add everytime a player moves
@@ -84,7 +84,7 @@ class Board(object):
     def validateTurn(self, move): # takes in the coordinates of the piece
         if self.moves % 2 == 0:
             self.player = 0
-        
+
         elif self.moves % 2 == 1:
             self.player = 1
 
@@ -96,7 +96,7 @@ class Board(object):
                 return True
         else:
             return False
-    
+
 
     def validPiece(self, location, board):
         if not board[location[0]][location[1]].isalpha():
@@ -117,6 +117,3 @@ class Board(object):
 
     def checkMate(self):
         pass
-
-
-

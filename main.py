@@ -1,11 +1,11 @@
 import colorama
 from colorama import Fore
-from colorama import Style 
+from colorama import Style
 from pawn import Pawn
-from rook import Rook 
-from king import King 
-from queen import Queen 
-from knight import Knight 
+from rook import Rook
+from king import King
+from queen import Queen
+from knight import Knight
 from bishop import Bishop
 from board import Board
 colorama.init()
@@ -15,7 +15,7 @@ def replacer(s, newstring, index, nofail=False):
     if not nofail and index not in range(len(s)):
         raise ValueError("index outside given string")
 
-    if index < 0:  
+    if index < 0:
         return newstring + s
     if index > len(s):
         return s + newstring
@@ -34,9 +34,9 @@ class Main(object):
 
     def takeInp(self):
         inp = input("\nEnter your pieces location > ")
-        temp = input("\nEnter your destination > ") 
+        temp = input("\nEnter your destination > ")
         return [inp, temp]
- 
+
     def validInp(self, inp):
         return True
     '''
@@ -46,19 +46,19 @@ class Main(object):
             return True
         else:
             return False
-    ''' 
+    '''
 
     def piece(self, coordinates):
 
         if self.board.pieceType(coordinates) == 'p':
-            print(f"pawn: {self.pawn.validMoves(coordinates, self.board.theBoard)}") 
+            print(f"pawn: {self.pawn.validMoves(coordinates, self.board.theBoard)}")
             if (coordinates[2], coordinates[3]) in self.pawn.validMoves(coordinates, self.board.theBoard):
                 self.board.move(self.board.theBoard, coordinates)
             else:
                 print(f"{err}: That's not a valid move!")
 
         elif self.board.pieceType(coordinates) == 'b':
-            print(f"bishop: {self.bishop.validMoves(coordinates, self.board.theBoard)}") 
+            print(f"bishop: {self.bishop.validMoves(coordinates, self.board.theBoard)}")
             if (coordinates[2], coordinates[3]) in self.bishop.validMoves(coordinates, self.board.theBoard):
                 self.board.move(self.board.theBoard, coordinates)
             else:
@@ -69,20 +69,20 @@ class Main(object):
                 if self.board.theBoard[coordinates[0]][coordinates[1]].islower():
                     self.king.isMovedb = True
 
-                if self.board.theBoard[coordinates[0]][coordinates[1]].isupper(): 
-                    self.king.isMovedw = True 
+                if self.board.theBoard[coordinates[0]][coordinates[1]].isupper():
+                    self.king.isMovedw = True
 
                 self.board.move(self.board.theBoard, coordinates)
 
                 # move the rook
                 if (coordinates[2], coordinates[3]) == (7,6):
-                    self.board.move(self.board.theBoard, (7,7,7,5), add=False) 
+                    self.board.move(self.board.theBoard, (7,7,7,5), add=False)
                     self.rook.wRook2 = True
 
                 if (coordinates[2], coordinates[3]) == (7,2):
-                    self.board.move(self.board.theBoard, (7,0,7,3), add=False) 
+                    self.board.move(self.board.theBoard, (7,0,7,3), add=False)
                     self.rook.wRook1 = True
-                
+
                 if (coordinates[2], coordinates[3]) == (0,6):
                     self.board.move(self.board.theBoard, (0,7,0,5), add=False)
                     self.rook.bRook2 = True
@@ -90,7 +90,7 @@ class Main(object):
                 if (coordinates[2], coordinates[3]) == (0,2):
                     self.board.move(self.board.theBoard, (0,0,0,3), add=False)
                     self.rook.bRook1 = True
-                 
+
             elif (coordinates[2], coordinates[3]) in self.king.validMoves(coordinates, self.board.theBoard):
 
                 if self.board.theBoard[coordinates[0]][coordinates[1]].islower():
@@ -103,7 +103,7 @@ class Main(object):
 
             else:
                 print(f"{err}: That's not a valid move!")
-        
+
         elif self.board.pieceType(coordinates) == 'n':
             print(self.knight.validMoves(coordinates, self.board.theBoard))
             if (coordinates[2], coordinates[3]) in self.knight.validMoves(coordinates, self.board.theBoard):
@@ -122,13 +122,13 @@ class Main(object):
             print(f"rook: {self.rook.validMoves(coordinates, self.board.theBoard)}")
             if (coordinates[2], coordinates[3]) in self.rook.validMoves(coordinates, self.board.theBoard):
                 self.board.move(self.board.theBoard, coordinates)
-                
+
                 if (coordinates[0], coordinates[1]) == (7,7):
                     self.rook.wRook2 = True
 
                 if (coordinates[0], coordinates[1]) == (7,0):
                     self.rook.wRook1 = True
-                
+
                 if (coordinates[0], coordinates[1]) == (0,7):
                     self.rook.bRook2 = True
 
@@ -137,7 +137,7 @@ class Main(object):
 
             else:
                 print(f"{err}: That's not a valid move!")
-        
+
     def occupiedSquares(self, team): # team refers to black or white
         validMovesw = []
         validMovesb = []
@@ -145,20 +145,20 @@ class Main(object):
         for i in range(8):
             for j in range(8):
                 piece = self.board.theBoard[i][j]
-                if not piece.isalpha(): 
+                if not piece.isalpha():
                     continue
-                
-                coordinates = (i,j) 
+
+                coordinates = (i,j)
 
                 if piece.islower():
                     if piece == 'p':
                         if len(self.pawn.validMoves(coordinates, self.board.theBoard, True)) > 0:
                             validMovesb.append(self.pawn.validMoves(coordinates, self.board.theBoard))
-                    
+
                     elif piece == 'n':
                         if len(self.knight.validMoves(coordinates, self.board.theBoard)) > 0:
                             validMovesb.append(self.knight.validMoves(coordinates, self.board.theBoard))
-                
+
                     elif piece == 'b':
                         if len(self.bishop.validMoves(coordinates, self.board.theBoard)) > 0:
                             validMovesb.append(self.bishop.validMoves(coordinates, self.board.theBoard))
@@ -166,20 +166,24 @@ class Main(object):
                     elif piece == 'q':
                         if len(self.queen.validMoves(coordinates, self.board.theBoard)) > 0:
                             validMovesb.append(self.queen.validMoves(coordinates, self.board.theBoard))
-                    
+
                     elif piece == 'r':
-                        if len(self.rook.validMoves(coordinates, self.board.theBoard)) > 0: 
+                        if len(self.rook.validMoves(coordinates, self.board.theBoard)) > 0:
                             validMovesb.append(self.rook.validMoves(coordinates, self.board.theBoard))
+
+                    elif piece == 'k':
+                        if len(self.king.validMoves(coordinates, self.board.theBoard)) > 0:
+                            validMovesb.append(self.king.validMoves(coordinates, self.board.theBoard))
 
                 else:
                     if piece == 'P':
                         if len(self.pawn.validMoves(coordinates, self.board.theBoard, True)) > 0:
                            validMovesw.append(self.pawn.validMoves(coordinates, self.board.theBoard))
-                    
+
                     elif piece == 'N':
                         if len(self.knight.validMoves(coordinates, self.board.theBoard)) > 0:
                             validMovesw.append(self.knight.validMoves(coordinates, self.board.theBoard))
-                
+
                     elif piece == 'B':
                         if len(self.bishop.validMoves(coordinates, self.board.theBoard)) > 0:
                             validMovesw.append(self.bishop.validMoves(coordinates, self.board.theBoard))
@@ -187,15 +191,19 @@ class Main(object):
                     elif piece == 'Q':
                         if len(self.queen.validMoves(coordinates, self.board.theBoard)) > 0:
                             validMovesw.append(self.queen.validMoves(coordinates, self.board.theBoard))
-                    
+
                     elif piece == 'R':
-                        if len(self.rook.validMoves(coordinates, self.board.theBoard)) > 0: 
+                        if len(self.rook.validMoves(coordinates, self.board.theBoard)) > 0:
                             validMovesw.append(self.rook.validMoves(coordinates, self.board.theBoard))
 
-        validMovesb = [item for sublist in validMovesb for item in sublist] 
-        validMovesw = [item for sublist in validMovesw for item in sublist] 
-        
-        if team:
+                    elif piece == 'K':
+                        if len(self.king.validMoves(coordinates, self.board.theBoard)) > 0:
+                            validMovesw.append(self.king.validMoves(coordinates, self.board.theBoard))
+
+        validMovesb = [item for sublist in validMovesb for item in sublist]
+        validMovesw = [item for sublist in validMovesw for item in sublist]
+
+        if team: # team = true is white
             return validMovesw
         else:
             return validMovesb
@@ -209,7 +217,6 @@ main = Main()
 
 def start():
     while True:
-        #print(main.occupiedSquares(True))
         player = main.board.currentPlayer()
         main.board.printBoard(main.board.theBoard)
         #main.occupiedSquares(True)
@@ -227,10 +234,6 @@ def start():
                 continue
         else:
             print(f"{err}: Enter a valid option!")
-        
-        print(f"Right white rook: {main.rook.wRook2}")
-        print(f"Left white rook: {main.rook.wRook1}")
 
 if __name__ == "__main__":
     start()
-
