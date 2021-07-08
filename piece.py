@@ -10,18 +10,21 @@ class Piece(object):
         pass
 
     def check(self, board, team):
-        kPos = main.king.getPos(board, team)
-        print(f"king position: {kPos}")
+        if team:
+            kPos = main.king.getPos(board, False)
+        else:
+            kPos = main.king.getPos(board, True)
+
 
         check = False
         squares = main.occupiedSquares(team)
-        print(f"occupied squares{squares}")
         for square in squares:
             if square == kPos:
                 check = True
 
+        print(f"{check}")
         return check
 
 p = Piece()
 m = Main()
-print(p.check(m.board.theBoard, True))
+print(p.check(m.board.theBoard, False))

@@ -18,14 +18,14 @@ class Board(object):
     def __init__(self):
         self.theBoard = [
             #01234567
-            'r***k**r',#0
+            'rnbqkbnr',#0
             'pppppppp',#1
             '********',#2
             '****p***',#3
             '***K****',#4
             '********',#5
             'PPPPPPPP',#6
-            'R***K**R']#7
+            'RNBQKBNR']#7
         self.lexographic = {'a': 0, 'b': 1, 'c':2, 'd':3, 'e':4, 'f':5, 'g':6, 'h':7}
         self.moves = 0 # keeps track of the moves
         self.player = 0 # 0 is white
@@ -107,10 +107,10 @@ class Board(object):
     def currentPlayer(self):
         if self.moves % 2 == 0:
             print("White's Turn")
-            return 'W'
+            return True
         else:
             print("Black's Turn")
-            return 'B'
+            return False
 
     def stalemate(self):
         pass
