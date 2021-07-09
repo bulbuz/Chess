@@ -48,19 +48,17 @@ class Main(object):
             return False
     '''
 
-    def piece(self, coordinates):
+    def piece(self, coordinates, add=True):
 
         if self.board.pieceType(coordinates) == 'p':
-            print(f"pawn: {self.pawn.validMoves(coordinates, self.board.theBoard)}")
             if (coordinates[2], coordinates[3]) in self.pawn.validMoves(coordinates, self.board.theBoard):
-                self.board.move(self.board.theBoard, coordinates)
+                self.board.move(self.board.theBoard, coordinates, add)
             else:
                 print(f"{err}: That's not a valid move!")
 
         elif self.board.pieceType(coordinates) == 'b':
-            print(f"bishop: {self.bishop.validMoves(coordinates, self.board.theBoard)}")
             if (coordinates[2], coordinates[3]) in self.bishop.validMoves(coordinates, self.board.theBoard):
-                self.board.move(self.board.theBoard, coordinates)
+                self.board.move(self.board.theBoard, coordinates, add)
             else:
                 print(f"{err}: That's not a valid move!")
 
@@ -73,7 +71,7 @@ class Main(object):
                 if self.board.theBoard[coordinates[0]][coordinates[1]].isupper():
                     self.king.isMovedw = True
 
-                self.board.move(self.board.theBoard, coordinates)
+                self.board.move(self.board.theBoard, coordinates, add)
 
                 # move the rook
                 if (coordinates[2], coordinates[3]) == (7,6):
@@ -100,29 +98,26 @@ class Main(object):
                 if self.board.theBoard[coordinates[0]][coordinates[1]].isupper():
                     self.king.isMovedw = True
 
-                self.board.move(self.board.theBoard, coordinates)
+                self.board.move(self.board.theBoard, coordinates, add)
 
             else:
                 print(f"{err}: That's not a valid move!")
 
         elif self.board.pieceType(coordinates) == 'n':
-            print(self.knight.validMoves(coordinates, self.board.theBoard))
             if (coordinates[2], coordinates[3]) in self.knight.validMoves(coordinates, self.board.theBoard):
-                self.board.move(self.board.theBoard, coordinates)
+                self.board.move(self.board.theBoard, coordinates, add)
             else:
                 print(f"{err}: That's not a valid move!")
 
         elif self.board.pieceType(coordinates) == 'q':
-            print(f"queen: {self.queen.validMoves(coordinates, self.board.theBoard)}")
             if (coordinates[2], coordinates[3]) in self.queen.validMoves(coordinates, self.board.theBoard):
-                self.board.move(self.board.theBoard, coordinates)
+                self.board.move(self.board.theBoard, coordinates, add)
             else:
                 print(f"{err}: That's not a valid move!")
 
         elif self.board.pieceType(coordinates) == 'r':
-            print(f"rook: {self.rook.validMoves(coordinates, self.board.theBoard)}")
             if (coordinates[2], coordinates[3]) in self.rook.validMoves(coordinates, self.board.theBoard):
-                self.board.move(self.board.theBoard, coordinates)
+                self.board.move(self.board.theBoard, coordinates, add)
 
                 if (coordinates[0], coordinates[1]) == (7,7):
                     self.rook.wRook2 = True
@@ -240,17 +235,44 @@ def start():
         WELCOME TO CHESS IN THE TERMINAL!
     =========================================
             """)
+
     while True:
         player = main.board.currentPlayer()
         main.board.printBoard(main.board.theBoard)
-        main.check(main.board.theBoard, player)
+        inCheck = main.check(main.board.theBoard, player)
+
+        if inCheck:
+            print("CHECK!")
+
         inp = main.takeInp()
+
         if main.validInp(inp):
             coordinates = main.board.convertCoordinate(inp)
             if main.board.validPiece(coordinates, main.board.theBoard):
                 if main.board.validateTurn(coordinates):
-                    main.piece(coordinates)
+                    if inCheck:
+                        print(f"After validateTurn: {inCheck}")
+                        main.piece(coordinates, False)
+                    else:
+                        print("After validateTurn (check = False)")
+                        main.piece(coordinates)
+
+                    if inCheck:
+                        print(f"{err}: That's not valid, try again!")
+                        temp = [0,0,0,0]
+                        temp[0] = coordinates[2]
+                        temp[1] = coordinates[3]
+                        temp[2] = coordinates[0]
+                        temp[3] = coordinates[1]
+
+                        main.board.move(main.board.theBoard, temp, False)
+                        inCheck = True 
+
+                    else:
+                        inCheck = False
+
                 else:
+                    print("validateTurn error")
                     print(f"{err}: That's not valid, try again!")
                     continue
             else:

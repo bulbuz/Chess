@@ -21,8 +21,8 @@ class Board(object):
             'rnbqkbnr',#0
             'pppppppp',#1
             '********',#2
-            '****p***',#3
-            '***K****',#4
+            '********',#3
+            '********',#4
             '********',#5
             'PPPPPPPP',#6
             'RNBQKBNR']#7
@@ -75,6 +75,7 @@ class Board(object):
 
         dest = replacer(board[destColumn], piece, destRow)
         board[destColumn] = dest
+
         if add:
             self.moves += 1 # add everytime a player moves
 
@@ -91,6 +92,7 @@ class Board(object):
         if self.moves % 2 == 0 and self.player == 0:
             if self.theBoard[move[0]][move[1]].isupper():
                 return True
+
         elif self.moves % 2 == 1 and self.player == 1:
             if self.theBoard[move[0]][move[1]].islower():
                 return True
