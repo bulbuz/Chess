@@ -4,20 +4,21 @@ main = Main()
 
 class Piece(object):
     def __init__(self):
-        main = Main()
+        pass
 
     def pin(self):
         pass
 
     def check(self, board, team):
-        if team:
-            kPos = main.king.getPos(board, False)
-        else:
-            kPos = main.king.getPos(board, True)
-
-
+        print("fired")
         check = False
-        squares = main.occupiedSquares(team)
+        kPos = main.king.getPos(board, team)
+
+        if team:
+            squares = main.occupiedSquares(False)
+        else:
+            squares = main.occupiedSquares(True)
+
         for square in squares:
             if square == kPos:
                 check = True
@@ -26,5 +27,4 @@ class Piece(object):
         return check
 
 p = Piece()
-m = Main()
-print(p.check(m.board.theBoard, False))
+print(p.check(main.board.theBoard, True))

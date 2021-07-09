@@ -3,9 +3,9 @@ class Knight(object):
     def __init__(self):
         pass
 
-    def validMoves(self, location, board):
+    def validMoves(self, location, board, captures=False):
         validMoves = []
-       
+
         if location[0]+2 <= 7 and location[1]+1 <= 7:
             if board[location[0]+2][location[1]+1].isalpha() and board[location[0]+2][location[1]+1].islower() != board[location[0]][location[1]].islower(): # capture
                 validMoves.append((location[0]+2,location[1]+1))
@@ -29,7 +29,7 @@ class Knight(object):
                 validMoves.append((location[0]-2,location[1]+1))
             elif not board[location[0]-2][location[1]+1].isalpha():
                 validMoves.append((location[0]-2, location[1]+1))
-        
+
         if location[0]-1 >= 0 and location[1]-2 >= 0:
             if board[location[0]-1][location[1]-2].isalpha() and board[location[0]-1][location[1]-2].islower() != board[location[0]][location[1]].islower(): # capture
                 print(board[location[0]-1][location[1]-2])
@@ -56,4 +56,3 @@ class Knight(object):
                 validMoves.append((location[0]+1, location[1]+2))
 
         return validMoves
-

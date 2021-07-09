@@ -65,7 +65,8 @@ class Main(object):
                 print(f"{err}: That's not a valid move!")
 
         elif self.board.pieceType(coordinates) == 'k':
-            if (coordinates[2], coordinates[3]) in self.king.castle(coordinates, self.board.theBoard, self.rook.wRook1, self.rook.wRook2, self.rook.bRook1, self.rook.bRook2):
+            if (coordinates[2], coordinates[3]) in self.king.castle(coordinates,
+            self.board.theBoard, self.rook.wRook1, self.rook.wRook2, self.rook.bRook1, self.rook.bRook2):
                 if self.board.theBoard[coordinates[0]][coordinates[1]].islower():
                     self.king.isMovedb = True
 
@@ -203,34 +204,49 @@ class Main(object):
 
         validMovesb = [item for sublist in validMovesb for item in sublist]
         validMovesw = [item for sublist in validMovesw for item in sublist]
-        #validMovesb = list(dict.fromkeys(validMovesb))
-        #validMovesw = list(dict.fromkeys(validMovesw))
+        validMovesb = list(dict.fromkeys(validMovesb))
+        validMovesw = list(dict.fromkeys(validMovesw))
 
         if team: # team = true is white
-            print("White's occupying squares")
-            print(validMovesw)
+            #print("White's occupying squares")
+            #print(validMovesw)
             return validMovesw
 
         else:
-            print("Black's occupying squares")
-            print(validMovesb)
+            #print("Black's occupying squares")
+            #print(validMovesb)
             return validMovesb
 
-print("""
-    WELCOME TO CHESS IN THE TERMINAL!
-=========================================
-        """)
+
+    def check(self, board, team):
+        check = False
+        kPos = self.king.getPos(board, team)
+
+        if team:
+            squares = self.occupiedSquares(False)
+        else:
+            squares = self.occupiedSquares(True)
+
+        for square in squares:
+            if square == kPos:
+                check = True
+
+        return check
 
 main = Main()
 
 def start():
+    print("""
+        WELCOME TO CHESS IN THE TERMINAL!
+    =========================================
+            """)
     while True:
         player = main.board.currentPlayer()
         main.board.printBoard(main.board.theBoard)
-        print(main.occupiedSquares(player))
-        x = main.takeInp()
-        if main.validInp(x):
-            coordinates = main.board.convertCoordinate(x)
+        main.check(main.board.theBoard, player)
+        inp = main.takeInp()
+        if main.validInp(inp):
+            coordinates = main.board.convertCoordinate(inp)
             if main.board.validPiece(coordinates, main.board.theBoard):
                 if main.board.validateTurn(coordinates):
                     main.piece(coordinates)
@@ -245,3 +261,4 @@ def start():
 
 if __name__ == "__main__":
     start()
+

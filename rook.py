@@ -7,14 +7,14 @@ class Rook(object):
         self.bRook1 = False # left rook
         self.bRook2 = False # right rook
 
-    def validMoves(self, location, board):
+    def validMoves(self, location, board, captures=False):
         validMoves = []
-        
+
         blockedPath1 = False
         blockedPath2 = False
         blockedPath3 = False
         blockedPath4 = False
-        
+
         i = 0
         while i < 8:
             i+=1
@@ -25,7 +25,7 @@ class Rook(object):
 
                 elif board[location[0]-i][location[1]].isalpha() and board[location[0]][location[1]].islower() == board[location[0]-i][location[1]].islower():
                     blockedPath1 = True
-                
+
                 elif not board[location[0]-i][location[1]].isalpha():
                     validMoves.append((location[0]-i, location[1]))
 
@@ -58,7 +58,7 @@ class Rook(object):
                 if board[location[0]][location[1]-j].isalpha() and board[location[0]][location[1]].islower() != board[location[0]][location[1]-j].islower():
                     validMoves.append((location[0], location[1]-j))
                     blockedPath4 = 1
-                     
+
                 elif board[location[0]][location[1]-j].isalpha() and board[location[0]][location[1]].islower() == board[location[0]][location[1]-j].islower():
                     blockedPath4 = 1
 

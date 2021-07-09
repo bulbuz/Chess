@@ -16,20 +16,19 @@ main loop {
 
 5. move piece
 
-6. check if won 
+6. check if won
 }
 
 generate occupied squares by each team (pay attention to pawns since their forward movement isn't occupation)
+input is valid if the king doesn't get exposed to the enemies occupation squares
 
 TODO
 ====
 
-- check
 - input validation
 - en passant
 - pawn promotion
 - unavailable squares (king)
 - pins
 - checkmate
-- stalemate 
-
+- stalemate
