@@ -228,6 +228,7 @@ class Main(object):
 
         return check
 
+
 main = Main()
 
 def start():
@@ -250,26 +251,23 @@ def start():
             coordinates = main.board.convertCoordinate(inp)
             if main.board.validPiece(coordinates, main.board.theBoard):
                 if main.board.validateTurn(coordinates):
+                    main.piece(coordinates)
+                    
+                    inCheck = main.check(main.board.theBoard, player)
+                    
+                    print()
                     if inCheck:
-                        print(f"After validateTurn: {inCheck}")
-                        main.piece(coordinates, False)
-                    else:
-                        print("After validateTurn (check = False)")
-                        main.piece(coordinates)
+                        main.board.moves -= 1
+                        afterCoords = []
+                        afterCoords.append(coordinates[2])
+                        afterCoords.append(coordinates[3])
+                        afterCoords.append(coordinates[0])
+                        afterCoords.append(coordinates[1])
+                        main.board.move(main.board.theBoard, afterCoords, False) 
+                        # puts back the piece if it's invalid
+                        # and the player is asked to make another move
+                        continue
 
-                    if inCheck:
-                        print(f"{err}: That's not valid, try again!")
-                        temp = [0,0,0,0]
-                        temp[0] = coordinates[2]
-                        temp[1] = coordinates[3]
-                        temp[2] = coordinates[0]
-                        temp[3] = coordinates[1]
-
-                        main.board.move(main.board.theBoard, temp, False)
-                        inCheck = True 
-
-                    else:
-                        inCheck = False
 
                 else:
                     print("validateTurn error")

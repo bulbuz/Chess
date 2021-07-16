@@ -25,6 +25,7 @@ input is valid if the king doesn't get exposed to the enemies occupation squares
 TODO
 ====
 
+- check
 - input validation
 - en passant
 - pawn promotion
