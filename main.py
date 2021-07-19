@@ -1,5 +1,5 @@
 import colorama
-from colorama import Fore
+from colorama import Fore 
 from colorama import Style
 from pieces.pawn import Pawn
 from pieces.rook import Rook
@@ -24,7 +24,7 @@ def replacer(s, newstring, index, nofail=False):
 
 class Main(object):
     def __init__(self):
-        self.board = Board()
+        self.board = Board() 
         self.rook = Rook()
         self.pawn = Pawn()
         self.king = King()
@@ -49,7 +49,7 @@ class Main(object):
     '''
 
     def piece(self, coordinates, add=True):
-
+    
         if self.board.pieceType(coordinates) == 'p':
             if (coordinates[2], coordinates[3]) in self.pawn.validMoves(coordinates, self.board.theBoard):
                 self.board.move(self.board.theBoard, coordinates, add)
@@ -63,6 +63,12 @@ class Main(object):
                 print(f"{err}: That's not a valid move!")
 
         elif self.board.pieceType(coordinates) == 'k':
+            team = False
+            if self.board.theBoard[coordinates[2]][coordinates[3]].islower():
+                team = True
+            
+            occupiedSquares = self.occupiedSquares(team)
+            
             if (coordinates[2], coordinates[3]) in self.king.castle(coordinates,
             self.board.theBoard, self.rook.wRook1, self.rook.wRook2, self.rook.bRook1, self.rook.bRook2):
                 if self.board.theBoard[coordinates[0]][coordinates[1]].islower():
@@ -90,7 +96,7 @@ class Main(object):
                     self.board.move(self.board.theBoard, (0,0,0,3), add=False)
                     self.rook.bRook1 = True
 
-            elif (coordinates[2], coordinates[3]) in self.king.validMoves(coordinates, self.board.theBoard):
+            elif (coordinates[2], coordinates[3]) in self.king.validMoves(coordinates, self.board.theBoard, occupiedSquares):
 
                 if self.board.theBoard[coordinates[0]][coordinates[1]].islower():
                     self.king.isMovedb = True
@@ -254,8 +260,7 @@ def start():
                     main.piece(coordinates)
                     
                     inCheck = main.check(main.board.theBoard, player)
-                    
-                    print()
+                     
                     if inCheck:
                         main.board.moves -= 1
                         afterCoords = []
@@ -267,7 +272,6 @@ def start():
                         # puts back the piece if it's invalid
                         # and the player is asked to make another move
                         continue
-
 
                 else:
                     print("validateTurn error")

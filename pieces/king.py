@@ -25,7 +25,7 @@ class King(object):
 
         return validMoves
 
-    def validMoves(self, location, board):
+    def validMoves(self, location, board, occupiedSquares=[]):
         validMoves = []
 
         # moves
@@ -78,7 +78,12 @@ class King(object):
                 validMoves.append((location[0]+1, location[1]-1))
             elif board[location[0]+1][location[1]-1] == "*":
                 validMoves.append((location[0]+1, location[1]-1))
-
+        
+        for move in validMoves:
+            print(move)
+            if move in occupiedSquares:
+                validMoves.remove((move[0], move[1]))
+        
         return validMoves
 
     def getPos(self, board, color):
@@ -90,3 +95,4 @@ class King(object):
                 else:
                     if board[i][j] == "k":
                         return (i,j)
+

@@ -20,13 +20,7 @@ class Pawn(object):
                     if board[location[0]+2][location[1]] == "*" and location[0] == 1:
                         validMoves.append((location[0]+2, location[1]))
 
-        # available captures depending on the piece color
-        if board[location[0]][location[1]].islower(): # black
-            if (location[0]+1 <= 7 and location[1]+1 <= 7 and captures) and (location[0]+1 <= 7 and location[1]-1 >= 0):
-                validMoves.append((location[0]+1,location[1]+1))
-                validMoves.append((location[0]+1,location[1]-1))
-
-            else:
+            if board[location[0]][location[1]].islower(): # black
                 if location[0]+1 <= 7 and location[1]+1 <= 7:
                     if piece.islower() != board[location[0]+1][location[1]+1].islower() and board[location[0]+1][location[1]+1].isalpha(): # checks for different colors
                         validMoves.append((location[0]+1,location[1]+1))
@@ -34,18 +28,24 @@ class Pawn(object):
                     if piece.islower() != board[location[0]+1][location[1]-1].islower() and board[location[0]+1][location[1]-1].isalpha():
                         validMoves.append((location[0]+1,location[1]-1))
 
-        else: #white
-
-            if (location[0]-1 >= 0 and location[1]-1 >= 0 and captures) and (location[0]-1 >= 0 and location[1]+1 <= 7):
-                validMoves.append((location[0]-1,location[1]-1))
-                validMoves.append((location[0]-1,location[1]+1))
-            else:
+            else: #white
                 if location[0]-1 >= 0 and location[1]-1 >= 0:
                     if piece.isupper() != board[location[0]-1][location[1]-1].isupper() and board[location[0]-1][location[1]-1].isalpha(): # checks for different colors
                         validMoves.append((location[0]-1,location[1]-1))
                 if location[0]-1 >= 0 and location[1]+1 <= 7:
                     if piece.isupper() != board[location[0]-1][location[1]+1].isupper() and board[location[0]-1][location[1]+1].isalpha():
                         validMoves.append((location[0]-1,location[1]+1))
+
+        # available captures depending on the piece color
+        else:
+            if board[location[0]][location[1]].islower(): # black
+                if (location[0]+1 <= 7 and location[1]+1 <= 7 and captures) and (location[0]+1 <= 7 and location[1]-1 >= 0):
+                    validMoves.append((location[0]+1,location[1]+1))
+                    validMoves.append((location[0]+1,location[1]-1))
+            else:
+                if (location[0]-1 >= 0 and location[1]+1 <= 7 and captures) and (location[0]-1 >= 0 and location[1]-1 >= 0):
+                    validMoves.append((location[0]+1,location[1]+1))
+                    validMoves.append((location[0]+1,location[1]-1))
 
         return validMoves
 
