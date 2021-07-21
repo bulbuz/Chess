@@ -51,7 +51,7 @@ class King(object):
 
         if location[1]-1 >= 0:
             if board[location[0]][location[1]-1].isalpha() and board[location[0]][location[1]-1].islower() != piece.islower():
-                validMoves.append(location[0], location[1]-1)
+                validMoves.append((location[0], location[1]-1))
             elif board[location[0]][location[1]-1] == "*":
                 validMoves.append((location[0], location[1]-1))
 
@@ -78,11 +78,20 @@ class King(object):
                 validMoves.append((location[0]+1, location[1]-1))
             elif board[location[0]+1][location[1]-1] == "*":
                 validMoves.append((location[0]+1, location[1]-1))
+
+
+        temp = []
+        for i in range(len(validMoves)):
+            #print(f"occupied squares: {occupiedSquares}")
+            if validMoves[i] in occupiedSquares:
+                temp.append(validMoves[i])
         
-        for move in validMoves:
-            print(move)
-            if move in occupiedSquares:
-                validMoves.remove((move[0], move[1]))
+        for mv in temp:
+            if mv in validMoves:
+                validMoves.remove(mv)
+
+        #print(f"occupiedSquares: {occupiedSquares}")
+        print(validMoves) 
         
         return validMoves
 

@@ -37,15 +37,15 @@ class Pawn(object):
                         validMoves.append((location[0]-1,location[1]+1))
 
         # available captures depending on the piece color
-        else:
+        if captures:
             if board[location[0]][location[1]].islower(): # black
                 if (location[0]+1 <= 7 and location[1]+1 <= 7 and captures) and (location[0]+1 <= 7 and location[1]-1 >= 0):
                     validMoves.append((location[0]+1,location[1]+1))
                     validMoves.append((location[0]+1,location[1]-1))
             else:
                 if (location[0]-1 >= 0 and location[1]+1 <= 7 and captures) and (location[0]-1 >= 0 and location[1]-1 >= 0):
-                    validMoves.append((location[0]+1,location[1]+1))
-                    validMoves.append((location[0]+1,location[1]-1))
+                    validMoves.append((location[0]-1,location[1]+1))
+                    validMoves.append((location[0]-1,location[1]-1))
 
         return validMoves
 

@@ -63,12 +63,13 @@ class Main(object):
                 print(f"{err}: That's not a valid move!")
 
         elif self.board.pieceType(coordinates) == 'k':
-            team = False
+            team = True
             if self.board.theBoard[coordinates[2]][coordinates[3]].islower():
-                team = True
+                team = False
             
             occupiedSquares = self.occupiedSquares(team)
-            
+            print(f"squares: {occupiedSquares}")
+
             if (coordinates[2], coordinates[3]) in self.king.castle(coordinates,
             self.board.theBoard, self.rook.wRook1, self.rook.wRook2, self.rook.bRook1, self.rook.bRook2):
                 if self.board.theBoard[coordinates[0]][coordinates[1]].islower():
@@ -96,7 +97,7 @@ class Main(object):
                     self.board.move(self.board.theBoard, (0,0,0,3), add=False)
                     self.rook.bRook1 = True
 
-            elif (coordinates[2], coordinates[3]) in self.king.validMoves(coordinates, self.board.theBoard, occupiedSquares):
+            elif (coordinates[2], coordinates[3]) in self.king.validMoves(coordinates, self.board.theBoard, occupiedSquares = occupiedSquares):
 
                 if self.board.theBoard[coordinates[0]][coordinates[1]].islower():
                     self.king.isMovedb = True
@@ -105,9 +106,11 @@ class Main(object):
                     self.king.isMovedw = True
 
                 self.board.move(self.board.theBoard, coordinates, add)
-
+                
+                return True
             else:
                 print(f"{err}: That's not a valid move!")
+                return False
 
         elif self.board.pieceType(coordinates) == 'n':
             if (coordinates[2], coordinates[3]) in self.knight.validMoves(coordinates, self.board.theBoard):
@@ -257,20 +260,27 @@ def start():
             coordinates = main.board.convertCoordinate(inp)
             if main.board.validPiece(coordinates, main.board.theBoard):
                 if main.board.validateTurn(coordinates):
-                    main.piece(coordinates)
+                    if main.piece(coordinates):
+                        moved = True
+                    else:
+                        moved = False
+
+                    #print(main.occupiedSquares(True))
                     
                     inCheck = main.check(main.board.theBoard, player)
                      
-                    if inCheck:
+                    if inCheck and moved:
                         main.board.moves -= 1
                         afterCoords = []
                         afterCoords.append(coordinates[2])
                         afterCoords.append(coordinates[3])
                         afterCoords.append(coordinates[0])
                         afterCoords.append(coordinates[1])
-                        main.board.move(main.board.theBoard, afterCoords, False) 
+                        main.board.theBoard = main.board.move(main.board.theBoard, afterCoords, False) 
                         # puts back the piece if it's invalid
                         # and the player is asked to make another move
+                        continue
+                    else:
                         continue
 
                 else:
