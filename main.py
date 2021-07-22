@@ -53,6 +53,7 @@ class Main(object):
         if self.board.pieceType(coordinates) == 'p':
             if (coordinates[2], coordinates[3]) in self.pawn.validMoves(coordinates, self.board.theBoard):
                 self.board.move(self.board.theBoard, coordinates, add)
+                return True
             else:
                 print(f"{err}: That's not a valid move!")
 
@@ -115,14 +116,18 @@ class Main(object):
         elif self.board.pieceType(coordinates) == 'n':
             if (coordinates[2], coordinates[3]) in self.knight.validMoves(coordinates, self.board.theBoard):
                 self.board.move(self.board.theBoard, coordinates, add)
+                return True
             else:
                 print(f"{err}: That's not a valid move!")
+                return False
 
         elif self.board.pieceType(coordinates) == 'q':
             if (coordinates[2], coordinates[3]) in self.queen.validMoves(coordinates, self.board.theBoard):
                 self.board.move(self.board.theBoard, coordinates, add)
+                return True
             else:
                 print(f"{err}: That's not a valid move!")
+                return False 
 
         elif self.board.pieceType(coordinates) == 'r':
             if (coordinates[2], coordinates[3]) in self.rook.validMoves(coordinates, self.board.theBoard):
@@ -139,7 +144,8 @@ class Main(object):
 
                 if (coordinates[0], coordinates[1]) == (0,0):
                     self.rook.bRook1 = True
-
+                return True
+            
             else:
                 print(f"{err}: That's not a valid move!")
 
@@ -268,8 +274,9 @@ def start():
                     #print(main.occupiedSquares(True))
                     
                     inCheck = main.check(main.board.theBoard, player)
-                     
+                    
                     if inCheck and moved:
+                        print("fired")
                         main.board.moves -= 1
                         afterCoords = []
                         afterCoords.append(coordinates[2])

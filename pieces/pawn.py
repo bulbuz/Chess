@@ -1,3 +1,4 @@
+
 class Pawn(object):
     def __init__(self):
         pass
@@ -50,4 +51,11 @@ class Pawn(object):
         return validMoves
 
     def promotion(self, location, board):
-        pass
+        piece = board[location[0]][location[1]]
+        
+        if piece.isupper():
+            if location[0] == 0:
+                return True
+        else:
+            if location[0] == 7:
+                return True
