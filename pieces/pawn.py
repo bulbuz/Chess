@@ -1,4 +1,15 @@
 
+def replacer(s, newstring, index, nofail=False):
+    if not nofail and index not in range(len(s)):
+        raise ValueError("index outside given string")
+
+    if index < 0:
+        return newstring + s
+    if index > len(s):
+        return s + newstring
+
+    return s[:index] + newstring + s[index + 1:]
+
 class Pawn(object):
     def __init__(self):
         pass
@@ -48,15 +59,33 @@ class Pawn(object):
                     validMoves.append((location[0]-1,location[1]+1))
                     validMoves.append((location[0]-1,location[1]-1))
 
-        print(f"pawn moves: {validMoves}")
         return validMoves
 
     def promotion(self, location, board):
-        piece = board[location[0]][location[1]]
-        
-        if piece.isupper():
-            if location[0] == 0:
-                return True
-        else:
-            if location[0] == 7:
-                return True
+
+        while True: 
+            piece = board[location[0]][location[1]]
+            idx = location[1]
+            if piece.isupper():
+                if location[0] == 0:
+                    inp = input("What do you want to promote to? [Q/R/B/N] > ")
+
+                    if inp.isalpha() and inp.islower() in ["q", "r", "b", "n"]:
+                        if inp == "q":
+                            replacer(board[0], "q", idx)
+                            break
+                        
+                        elif inp == "r":
+                            replacer(board[0], "r", idx)
+                            break
+
+                        elif inp == "b":
+                            replacer(board[0], "b", idx)
+                            break
+                        
+                        elif inp == "n":
+                            replacer(board[0], "n", idx)
+                            break
+            else:
+                if location[0] == 7:
+                    return True

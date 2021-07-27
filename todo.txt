@@ -28,8 +28,6 @@ input is valid if the king doesn't get exposed to the enemies occupation squares
 
 pawn movement isn't finished (we have to set a limit on the double movement) 
 
-king disappears when moving from check
-
 - pawn promotion
 
 TODO

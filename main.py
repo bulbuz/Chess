@@ -34,8 +34,8 @@ class Main(object):
 
     def takeInp(self):
         inp = input("\nEnter your pieces location > ")
-        temp = input("\nEnter your destination > ")
-        return [inp, temp]
+        inp1 = input("\nEnter your destination > ")
+        return [inp, inp1]
 
     def validInp(self, inp):
         return True
@@ -54,6 +54,9 @@ class Main(object):
             if (coordinates[2], coordinates[3]) in self.pawn.validMoves(coordinates, self.board.theBoard):
                 self.board.move(self.board.theBoard, coordinates, add)
                 return True
+
+            elif 
+
             else:
                 print(f"{err}: That's not a valid move!")
 
