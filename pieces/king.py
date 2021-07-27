@@ -84,11 +84,13 @@ class King(object):
             if validMoves[i] in occupiedSquares:
                 temp.append(validMoves[i])
 
+        #print(f"validMoves before: {validMoves}")
+        print(f"occupiedSquares: {occupiedSquares}")
+        print(f"temp: {temp}")
         for mv in temp:
             if mv in validMoves:
                 validMoves.remove(mv)
 
-        #print(f"occupiedSquares: {occupiedSquares}")
         print(validMoves) 
         
         return validMoves

@@ -64,12 +64,12 @@ class Main(object):
                 print(f"{err}: That's not a valid move!")
 
         elif self.board.pieceType(coordinates) == 'k':
-            team = True
+            team = False
             if self.board.theBoard[coordinates[2]][coordinates[3]].islower():
-                team = False
+                team = True
             
             occupiedSquares = self.occupiedSquares(team)
-            print(f"squares: {occupiedSquares}")
+            #print(f"squares: {occupiedSquares}")
 
             if (coordinates[2], coordinates[3]) in self.king.castle(coordinates,
             self.board.theBoard, self.rook.wRook1, self.rook.wRook2, self.rook.bRook1, self.rook.bRook2):
