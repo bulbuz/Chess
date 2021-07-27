@@ -16,7 +16,7 @@ def replacer(s, newstring, index, nofail=False):
 
 class Board(object):
     def __init__(self):
-        self.theBoard = [
+        self.theboard = [
             #01234567
             'rnbqkbnr',#0
             'pppppppp',#1
@@ -27,16 +27,16 @@ class Board(object):
             'PPPPPPPP',#6
             'RNBQKBNR']#7
        
-        self.theboard = [
+        self.theBoard = [
             #01234567
             '********',#0
             '********',#1
             '********',#2
-            '********',#3
-            '****Q***',#4
-            '********',#5
-            '****p***',#6
-            '****k***']#7
+            '***p****',#3
+            '****p***',#4
+            '***K****',#5
+            '********',#6
+            '********']#7
 
         self.lexographic = {'a': 0, 'b': 1, 'c':2, 'd':3, 'e':4, 'f':5, 'g':6, 'h':7}
         self.moves = 0 # keeps track of the moves

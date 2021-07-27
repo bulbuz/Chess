@@ -80,6 +80,9 @@ class King(object):
                 validMoves.append((location[0]+1, location[1]-1))
 
         temp = []
+        for i in range(len(validMoves)):
+            if validMoves[i] in occupiedSquares:
+                temp.append(validMoves[i])
 
         for mv in temp:
             if mv in validMoves:

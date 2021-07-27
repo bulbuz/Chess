@@ -274,7 +274,7 @@ def start():
                     #print(main.occupiedSquares(True))
                     
                     inCheck = main.check(main.board.theBoard, player)
-                    
+                    print(moved)
                     if inCheck and moved:
                         print("fired")
                         main.board.moves -= 1
