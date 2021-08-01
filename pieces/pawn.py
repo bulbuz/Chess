@@ -62,30 +62,47 @@ class Pawn(object):
         return validMoves
 
     def promotion(self, location, board):
+        print("p") 
 
         while True: 
             piece = board[location[0]][location[1]]
             idx = location[1]
+            inp = input("What do you want to promote to? [Q/R/B/N] > ")
+           
             if piece.isupper():
-                if location[0] == 0:
-                    inp = input("What do you want to promote to? [Q/R/B/N] > ")
 
-                    if inp.isalpha() and inp.islower() in ["q", "r", "b", "n"]:
-                        if inp == "q":
-                            replacer(board[0], "q", idx)
-                            break
-                        
-                        elif inp == "r":
-                            replacer(board[0], "r", idx)
-                            break
+                if inp.isalpha() and inp.islower() in ["q", "r", "b", "n"]:
+                    if inp == "q":
+                        replacer(board[0], "q", idx)
+                        return board
+                    
+                    elif inp == "r":
+                        replacer(board[0], "r", idx)
+                        return board
 
-                        elif inp == "b":
-                            replacer(board[0], "b", idx)
-                            break
-                        
-                        elif inp == "n":
-                            replacer(board[0], "n", idx)
-                            break
+                    elif inp == "b":
+                        replacer(board[0], "b", idx)
+                        return board
+                    
+                    elif inp == "n":
+                        replacer(board[0], "n", idx)
+                        return board
             else:
-                if location[0] == 7:
-                    return True
+               
+                if inp.isalpha() and inp.islower() in ["q", "r", "b", "n"]:
+                    if inp == "q":
+                        replacer(board[0], "Q", idx)
+                        return board
+                    
+                    elif inp == "r":
+                        replacer(board[0], "R", idx)
+                        return board
+
+                    elif inp == "b":
+                        replacer(board[0], "B", idx)
+                        return board
+                    
+                    elif inp == "n":
+                        replacer(board[0], "N", idx)
+                        return board
+        

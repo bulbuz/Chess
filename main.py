@@ -51,14 +51,16 @@ class Main(object):
     def piece(self, coordinates, add=True):
     
         if self.board.pieceType(coordinates) == 'p':
+            if coordinates[2] == 0 or coordinates[2] == 7:
+                self.board.theBoard = self.pawn.promotion(coordinates, self.board.theBoard)
+
             if (coordinates[2], coordinates[3]) in self.pawn.validMoves(coordinates, self.board.theBoard):
                 self.board.move(self.board.theBoard, coordinates, add)
                 return True
 
-            elif 
-
             else:
                 print(f"{err}: That's not a valid move!")
+
 
         elif self.board.pieceType(coordinates) == 'b':
             if (coordinates[2], coordinates[3]) in self.bishop.validMoves(coordinates, self.board.theBoard):
@@ -277,9 +279,7 @@ def start():
                     #print(main.occupiedSquares(True))
                     
                     inCheck = main.check(main.board.theBoard, player)
-                    print(moved)
                     if inCheck and moved:
-                        print("fired")
                         main.board.moves -= 1
                         afterCoords = []
                         afterCoords.append(coordinates[2])
