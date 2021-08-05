@@ -6,22 +6,27 @@ class King(object):
         self.isMovedb = False
         self.isMovedw = False
 
-    def castle(self, location, board, wRook1, wRook2, bRook1, bRook2):
+    def castle(self, location, board, wRook1, wRook2, bRook1, bRook2, enemySquares):
         validMoves = []
 
         if board[location[0]][location[1]].isupper():
             if (board[7][5] == "*" and board[7][6] == "*") and (self.isMovedw == False and wRook2 == False):
-                validMoves.append((7,6))
+                if (7,5) not in enemySquares and (7,6) not in enemySquares:
+                    print(f"enemy square {enemySquares}")
+                    validMoves.append((7,6))
 
             if (board[7][1] == "*" and board[7][2] == "*" and board[7][3] == "*") and (self.isMovedw == False and wRook1 ==  False):
-                validMoves.append((7,2))
+                if (7,1) not in enemySquares and (7,2) not in enemySquares and (7,3) not in enemySquares:
+                    validMoves.append((7,2))
 
         if board[location[0]][location[1]].islower():
             if (board[0][5] == "*" and board[0][6] == "*") and not (self.isMovedb and bRook2):
-                validMoves.append((0,6))
+                if (0,5) not in enemySquares and (0,6) not in enemySquares:
+                    validMoves.append((0,6))
 
             if (board[0][1] == "*" and board[0][2] == "*" and board[0][3] == "*") and (self.isMovedb == False and bRook1 == False):
-                validMoves.append((0,2))
+                if (0,1) not in enemySquares and (0,2) not in enemySquares and (0,3) not in enemySquares:
+                    validMoves.append((0,2))
 
         return validMoves
 

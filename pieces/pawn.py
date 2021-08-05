@@ -18,8 +18,9 @@ class Pawn(object):
             else: # black
                 if board[location[0] + 1][location[1]] == "*":
                     validMoves.append((location[0]+1, location[1]))
-                    if board[location[0]+2][location[1]] == "*" and location[0] == 1:
-                        validMoves.append((location[0]+2, location[1]))
+                    if location[0]+2 <= 7:
+                        if board[location[0]+2][location[1]] == "*" and location[0] == 1:
+                            validMoves.append((location[0]+2, location[1]))
 
             if board[location[0]][location[1]].islower(): # black
                 if location[0]+1 <= 7 and location[1]+1 <= 7:

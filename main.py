@@ -75,14 +75,15 @@ class Main(object):
 
         elif self.board.pieceType(coordinates) == 'k':
             team = False
+            player = True
             if self.board.theBoard[coordinates[0]][coordinates[1]].islower():
                 team = True
+                player = False
             
             occupiedSquares = self.occupiedSquares(team)
-            #print(f"squares: {occupiedSquares}")
 
             if (coordinates[2], coordinates[3]) in self.king.castle(coordinates,
-            self.board.theBoard, self.rook.wRook1, self.rook.wRook2, self.rook.bRook1, self.rook.bRook2):
+            self.board.theBoard, self.rook.wRook1, self.rook.wRook2, self.rook.bRook1, self.rook.bRook2, occupiedSquares) and not self.check(self.board.theBoard, player):
                 if self.board.theBoard[coordinates[0]][coordinates[1]].islower():
                     self.king.isMovedb = True
 
@@ -238,7 +239,7 @@ class Main(object):
             return validMovesb
 
 
-    def check(self, board, team):
+    def check(self, board, team): # returns true if the given player is under check
         check = False
         kPos = self.king.getPos(board, team)
 
