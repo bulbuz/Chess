@@ -1,15 +1,4 @@
 
-def replacer(s, newstring, index, nofail=False):
-    if not nofail and index not in range(len(s)):
-        raise ValueError("index outside given string")
-
-    if index < 0:
-        return newstring + s
-    if index > len(s):
-        return s + newstring
-
-    return s[:index] + newstring + s[index + 1:]
-
 class Pawn(object):
     def __init__(self):
         pass
@@ -61,48 +50,27 @@ class Pawn(object):
 
         return validMoves
 
-    def promotion(self, location, board):
-        print("p") 
-
+    def promotion(self):
         while True: 
-            piece = board[location[0]][location[1]]
-            idx = location[1]
-            inp = input("What do you want to promote to? [Q/R/B/N] > ")
-           
-            if piece.isupper():
+            temp = None
+            inp = input("What do you want to promote to? [Q/R/B/N] > ").lower()
+            if inp.isalpha() and len(inp) == 1:
+                if inp == "q":
+                    temp = "q"
+                    break
+                
+                elif inp == "r":
+                    temp = "r"
+                    break
 
-                if inp.isalpha() and inp.islower() in ["q", "r", "b", "n"]:
-                    if inp == "q":
-                        replacer(board[0], "q", idx)
-                        return board
-                    
-                    elif inp == "r":
-                        replacer(board[0], "r", idx)
-                        return board
+                elif inp == "n":
+                    temp = "n"
+                    break
 
-                    elif inp == "b":
-                        replacer(board[0], "b", idx)
-                        return board
-                    
-                    elif inp == "n":
-                        replacer(board[0], "n", idx)
-                        return board
-            else:
-               
-                if inp.isalpha() and inp.islower() in ["q", "r", "b", "n"]:
-                    if inp == "q":
-                        replacer(board[0], "Q", idx)
-                        return board
-                    
-                    elif inp == "r":
-                        replacer(board[0], "R", idx)
-                        return board
+                elif inp == "b":
+                    temp = "b"
+                    break
+                else:
+                    print("That's not a valid piece! Try again.")
 
-                    elif inp == "b":
-                        replacer(board[0], "B", idx)
-                        return board
-                    
-                    elif inp == "n":
-                        replacer(board[0], "N", idx)
-                        return board
-        
+        return temp

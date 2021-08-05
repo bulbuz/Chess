@@ -22,18 +22,11 @@ main loop {
 UNFINISHED STUFF
 =================
 
-generate occupied squares by each team (pay attention to pawns since their forward movement isn't occupation)
-
-input is valid if the king doesn't get exposed to the enemies occupation squares
-
-pawn movement isn't finished (we have to set a limit on the double movement) 
-
-- pawn promotion
+- can castle through occupied square
 
 TODO
 ====
 
-- check
 - input validation
 - en passant
 - checkmate

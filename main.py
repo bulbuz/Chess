@@ -51,10 +51,15 @@ class Main(object):
     def piece(self, coordinates, add=True):
     
         if self.board.pieceType(coordinates) == 'p':
-            if coordinates[2] == 0 or coordinates[2] == 7:
-                self.board.theBoard = self.pawn.promotion(coordinates, self.board.theBoard)
+            if (coordinates[2] == 0 or coordinates[2] == 7) and (coordinates[2], coordinates[3]) in self.pawn.validMoves(coordinates, self.board.theBoard):
+                    pieceType = self.pawn.promotion()
+                    if self.board.theBoard[coordinates[0]][coordinates[1]].isupper():
+                        self.board.move(self.board.theBoard, coordinates, newPiece=pieceType.upper())
+                    else:
+                        self.board.move(self.board.theBoard, coordinates, newPiece=pieceType)
+                    return True
 
-            if (coordinates[2], coordinates[3]) in self.pawn.validMoves(coordinates, self.board.theBoard):
+            elif (coordinates[2], coordinates[3]) in self.pawn.validMoves(coordinates, self.board.theBoard):
                 self.board.move(self.board.theBoard, coordinates, add)
                 return True
 
@@ -70,7 +75,7 @@ class Main(object):
 
         elif self.board.pieceType(coordinates) == 'k':
             team = False
-            if self.board.theBoard[coordinates[2]][coordinates[3]].islower():
+            if self.board.theBoard[coordinates[0]][coordinates[1]].islower():
                 team = True
             
             occupiedSquares = self.occupiedSquares(team)

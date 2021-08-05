@@ -29,11 +29,11 @@ class Board(object):
        
         self.theBoard = [
             #01234567
-            '********',#0
+            '*q**k***',#0
             'P*******',#1
-            '********',#2
+            'P*******',#2
             '********',#3
-            '****k***',#4
+            '********',#4
             '********',#5
             '********',#6
             '********']#7
@@ -72,12 +72,13 @@ class Board(object):
 
         return newColumn, newRow, destColumn, destRow
 
-    def move(self, board, position, add=True):
+    def move(self, board, position, add=True, newPiece=None):
         column = position[0]
         row = position[1]
         destColumn = position[2]
         destRow = position[3]
         piece = board[column][row]
+
 
         # remove the piece and replace it with an empty slot
         newRow = replacer(board[column], '*', row)
@@ -85,8 +86,13 @@ class Board(object):
 
         # put the piece at the wanted position
 
-        dest = replacer(board[destColumn], piece, destRow)
-        board[destColumn] = dest
+        if newPiece:
+            piece = newPiece
+            dest = replacer(board[destColumn], piece, destRow)
+            board[destColumn] = dest
+        else:
+            dest = replacer(board[destColumn], piece, destRow)
+            board[destColumn] = dest
 
         if add:
             self.moves += 1 # add everytime a player moves
