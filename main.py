@@ -282,15 +282,23 @@ def start():
             coordinates = main.board.convertCoordinate(inp)
             if main.board.validPiece(coordinates, main.board.theBoard):
                 if main.board.validateTurn(coordinates):
+                    
+                    tempPiece = main.board.theBoard[coordinates[2]][coordinates[3]]
+                    temp = False
+                    if main.board.theBoard[coordinates[2]][coordinates[3]].isalpha():
+                        temp = True
+                        t = replacer(main.board.theBoard[coordinates[2]], tempPiece, coordinates[3])
+                    
                     if main.piece(coordinates):
                         moved = True
                     else:
                         moved = False
 
-                    #print(main.occupiedSquares(True))
-                    
                     inCheck = main.check(main.board.theBoard, player)
-                    if inCheck and moved:
+
+                    if inCheck and moved: 
+                        # puts back the piece if it's invalid
+                        # and the player is asked to make another move
                         main.board.moves -= 1
                         afterCoords = []
                         afterCoords.append(coordinates[2])
@@ -298,8 +306,10 @@ def start():
                         afterCoords.append(coordinates[0])
                         afterCoords.append(coordinates[1])
                         main.board.theBoard = main.board.move(main.board.theBoard, afterCoords, False) 
-                        # puts back the piece if it's invalid
-                        # and the player is asked to make another move
+
+                        if temp: 
+                            main.board.theBoard[coordinates[2]] = t
+
                         continue
                     else:
                         continue
@@ -316,4 +326,7 @@ def start():
 
 if __name__ == "__main__":
     start()
+
+
+
 
