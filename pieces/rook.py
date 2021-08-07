@@ -64,5 +64,6 @@ class Rook(object):
 
                 elif not board[location[0]][location[1]-j].isalpha():
                     validMoves.append((location[0], location[1]-j))
+        
 
         return validMoves

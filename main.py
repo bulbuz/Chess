@@ -254,6 +254,11 @@ class Main(object):
 
         return check
 
+    def stalemate(self):
+        pass
+
+    def checkMate(self, board, occupiedSquares, kingPos, team): # returns true if given player won 
+        pass
 
 main = Main()
 

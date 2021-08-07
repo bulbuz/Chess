@@ -31,7 +31,7 @@ class Board(object):
             #01234567
             '********',#0
             '********',#1
-            '********',#2
+            '*****q**',#2
             '********',#3
             '********',#4
             '********',#5
@@ -132,8 +132,3 @@ class Board(object):
             print("Black's Turn")
             return False
 
-    def stalemate(self):
-        pass
-
-    def checkMate(self):
-        pass

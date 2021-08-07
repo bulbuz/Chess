@@ -19,10 +19,11 @@ main loop {
 6. check if won
 }
 
+CHECK MATE - get the position of the king and see if it is attacked and has no escape squares
+
 UNFINISHED STUFF
 =================
 
-- can castle through occupied square
 
 TODO
 ====
