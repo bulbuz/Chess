@@ -1,3 +1,4 @@
+from typing import Coroutine
 import colorama
 from colorama import Fore 
 from colorama import Style
@@ -179,7 +180,7 @@ class Main(object):
 
                         elif piece == 'n':
                             if len(self.knight.validMoves(coordinates, self.board.theBoard)) > 0:
-                                validMovesb.append(self.knight.validMoves(coordinates, self.board.theBoard))
+                                validMovesb.append(self.knight.validMoves(coordinates, self.board.theBoard, True))
 
                         elif piece == 'b':
                             if len(self.bishop.validMoves(coordinates, self.board.theBoard)) > 0:
@@ -205,7 +206,7 @@ class Main(object):
 
                         elif piece == 'N':
                             if len(self.knight.validMoves(coordinates, self.board.theBoard)) > 0:
-                                validMovesw.append(self.knight.validMoves(coordinates, self.board.theBoard))
+                                validMovesw.append(self.knight.validMoves(coordinates, self.board.theBoard, True))
 
                         elif piece == 'B':
                             if len(self.bishop.validMoves(coordinates, self.board.theBoard)) > 0:
@@ -257,8 +258,23 @@ class Main(object):
     def stalemate(self):
         pass
 
-    def checkMate(self, board, occupiedSquares, kingPos, team): # returns true if given player won 
-        pass
+    def checkmate(self, coordinates): # returns true if given player won 
+        team = True
+        player = False
+        if self.board.theBoard[coordinates[0]][coordinates[1]].islower():
+            team = False
+            player = True
+        
+        print("yeet")
+        print(self.occupiedSquares(team))
+
+        kPos = self.king.getPos(self.board.theBoard, player) 
+        kingMoves = self.king.validMoves((kPos[0], kPos[1]), self.board.theBoard, self.occupiedSquares(team))
+
+        print(f"kMoves = {kingMoves}")
+        if len(kingMoves) == 0:
+            print("CHECKMATE!!")
+            return True
 
 main = Main()
 
@@ -311,6 +327,11 @@ def start():
                             main.board.theBoard[coordinates[2]] = t
 
                         continue
+
+                    if main.checkmate(coordinates):
+                        print("YOOU WOOON!!!")
+                        break
+                    
                     else:
                         continue
 

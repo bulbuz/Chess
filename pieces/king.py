@@ -109,4 +109,4 @@ class King(object):
                 else:
                     if board[i][j] == "k":
                         return (i,j)
-
+        return 1
