@@ -191,8 +191,8 @@ class Main(object):
                                 validMovesb.append(self.queen.validMoves(coordinates, self.board.theBoard))
 
                         elif piece == 'r':
-                            if len(self.rook.validMoves(coordinates, self.board.theBoard)) > 0:
-                                validMovesb.append(self.rook.validMoves(coordinates, self.board.theBoard))
+                            if len(self.rook.validMoves(coordinates, self.board.theBoard, True)) > 0:
+                                validMovesb.append(self.rook.validMoves(coordinates, self.board.theBoard, True))
 
                         elif piece == 'k':
                             if len(self.king.validMoves(coordinates, self.board.theBoard)) > 0:
@@ -217,8 +217,8 @@ class Main(object):
                                 validMovesw.append(self.queen.validMoves(coordinates, self.board.theBoard))
 
                         elif piece == 'R':
-                            if len(self.rook.validMoves(coordinates, self.board.theBoard)) > 0:
-                                validMovesw.append(self.rook.validMoves(coordinates, self.board.theBoard))
+                            if len(self.rook.validMoves(coordinates, self.board.theBoard, True)) > 0:
+                                validMovesw.append(self.rook.validMoves(coordinates, self.board.theBoard, True))
 
                         elif piece == 'K':
                             if len(self.king.validMoves(coordinates, self.board.theBoard)) > 0:

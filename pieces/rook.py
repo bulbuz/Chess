@@ -52,7 +52,12 @@ class Rook(object):
             if location[1]+j <= 7 and not blockedPath3:# right
                 if board[location[0]][location[1]+j].isalpha() and board[location[0]][location[1]].islower() != board[location[0]][location[1]+j].islower():
                     validMoves.append((location[0],location[1]+j))
-                    blockedPath3 = True
+
+                    if captures:
+                        if not board[location[0]][location[1]+j].lower() == "k":
+                            blockedPath3 = False
+                    else:
+                        blockedPath3 = True
 
                 elif board[location[0]][location[1]+j].isalpha() and board[location[0]][location[1]].islower() == board[location[0]][location[1]+j].islower():
                     blockedPath3 = True
@@ -77,4 +82,5 @@ class Rook(object):
                 if captures:
                     validMoves.append((location[0], location[1]-j))
 
+        print(f"rook's validmoves: {validMoves}")
         return validMoves
