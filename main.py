@@ -252,6 +252,9 @@ class Main(object):
         for square in squares:
             if square == kPos:
                 check = True
+        
+        print(squares)
+        print(kPos)
 
         return check
 
@@ -265,9 +268,6 @@ class Main(object):
             team = False
             player = True
         
-        print("yeet")
-        print(self.occupiedSquares(team))
-
         kPos = self.king.getPos(self.board.theBoard, player) 
         kingMoves = self.king.validMoves((kPos[0], kPos[1]), self.board.theBoard, self.occupiedSquares(team))
 
@@ -329,6 +329,7 @@ def start():
                         continue
 
                     if main.checkmate(coordinates):
+                        main.board.printBoard(main.board.theBoard)
                         print("YOOU WOOON!!!")
                         break
                     
