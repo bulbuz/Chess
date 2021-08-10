@@ -29,6 +29,9 @@ class Rook(object):
                 elif not board[location[0]-i][location[1]].isalpha():
                     validMoves.append((location[0]-i, location[1]))
 
+                if captures:
+                    validMoves.append((location[0]-i, location[1]))
+
             if location[0]+i <= 7 and not blockedPath2: # down
                 if board[location[0]+i][location[1]].isalpha() and board[location[0]+i][location[1]].islower() != board[location[0]][location[1]].islower():
                     validMoves.append((location[0]+i,location[1]))
@@ -38,6 +41,9 @@ class Rook(object):
                     blockedPath2 = 1
 
                 elif not board[location[0]+i][location[1]].isalpha():
+                    validMoves.append((location[0]+i,location[1]))
+                
+                if captures:
                     validMoves.append((location[0]+i,location[1]))
 
         j = 0
@@ -54,6 +60,9 @@ class Rook(object):
                 elif not board[location[0]][location[1]+j].isalpha():
                     validMoves.append((location[0],location[1]+j))
 
+                if captures:
+                    validMoves.append((location[0],location[1]+j))
+
             if location[1]-j >= 0 and not blockedPath4: # left
                 if board[location[0]][location[1]-j].isalpha() and board[location[0]][location[1]].islower() != board[location[0]][location[1]-j].islower():
                     validMoves.append((location[0], location[1]-j))
@@ -64,6 +73,8 @@ class Rook(object):
 
                 elif not board[location[0]][location[1]-j].isalpha():
                     validMoves.append((location[0], location[1]-j))
-        
+                
+                if captures:
+                    validMoves.append((location[0], location[1]-j))
 
         return validMoves
