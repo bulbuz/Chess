@@ -187,8 +187,8 @@ class Main(object):
                                 validMovesb.append(self.bishop.validMoves(coordinates, self.board.theBoard))
 
                         elif piece == 'q':
-                            if len(self.queen.validMoves(coordinates, self.board.theBoard)) > 0:
-                                validMovesb.append(self.queen.validMoves(coordinates, self.board.theBoard))
+                            if len(self.queen.validMoves(coordinates, self.board.theBoard, True)) > 0:
+                                validMovesb.append(self.queen.validMoves(coordinates, self.board.theBoard, True))
 
                         elif piece == 'r':
                             if len(self.rook.validMoves(coordinates, self.board.theBoard, True)) > 0:
@@ -213,8 +213,8 @@ class Main(object):
                                 validMovesw.append(self.bishop.validMoves(coordinates, self.board.theBoard))
 
                         elif piece == 'Q':
-                            if len(self.queen.validMoves(coordinates, self.board.theBoard)) > 0:
-                                validMovesw.append(self.queen.validMoves(coordinates, self.board.theBoard))
+                            if len(self.queen.validMoves(coordinates, self.board.theBoard, True)) > 0:
+                                validMovesw.append(self.queen.validMoves(coordinates, self.board.theBoard, True))
 
                         elif piece == 'R':
                             if len(self.rook.validMoves(coordinates, self.board.theBoard, True)) > 0:
@@ -272,7 +272,7 @@ class Main(object):
         kingMoves = self.king.validMoves((kPos[0], kPos[1]), self.board.theBoard, self.occupiedSquares(team))
 
         print(f"kMoves = {kingMoves}")
-        if len(kingMoves) == 0:
+        if len(kingMoves) == 0 and self.check(self.board.theBoard, player):
             print("CHECKMATE!!")
             return True
 

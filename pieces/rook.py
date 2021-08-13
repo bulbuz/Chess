@@ -22,6 +22,12 @@ class Rook(object):
                 if board[location[0]-i][location[1]].isalpha() and board[location[0]][location[1]].islower() != board[location[0]-i][location[1]].islower():
                     validMoves.append((location[0]-i, location[1]))
                     blockedPath1 = True
+                    
+                    if captures:
+                        if board[location[0]-i][location[1]].lower() == "k":
+                            blockedPath1 = 0
+                    else:
+                        blockedPath1 = 1
 
                 elif board[location[0]-i][location[1]].isalpha() and board[location[0]][location[1]].islower() == board[location[0]-i][location[1]].islower():
                     blockedPath1 = True
@@ -36,6 +42,11 @@ class Rook(object):
                 if board[location[0]+i][location[1]].isalpha() and board[location[0]+i][location[1]].islower() != board[location[0]][location[1]].islower():
                     validMoves.append((location[0]+i,location[1]))
                     blockedPath2 = 1
+                    if captures:
+                        if board[location[0]+i][location[1]].lower() == "k":
+                            blockedPath2 = 0
+                    else:
+                        blockedPath2 = 1
 
                 elif board[location[0]+i][location[1]].isalpha() and board[location[0]][location[1]].islower() == board[location[0]+i][location[1]].islower():
                     blockedPath2 = 1
@@ -73,6 +84,11 @@ class Rook(object):
                 if board[location[0]][location[1]-j].isalpha() and board[location[0]][location[1]].islower() != board[location[0]][location[1]-j].islower():
                     validMoves.append((location[0], location[1]-j))
                     blockedPath4 = 1
+                    if captures:
+                        if board[location[0]][location[1]-j].lower() == "k":
+                            blockedPath4 = False
+                    else:
+                        blockedPath4 = True
 
                 elif board[location[0]][location[1]-j].isalpha() and board[location[0]][location[1]].islower() == board[location[0]][location[1]-j].islower():
                     blockedPath4 = 1
